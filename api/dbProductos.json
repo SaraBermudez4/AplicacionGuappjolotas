@@ -1,0 +1,168 @@
+{
+    "guajolotas" : [
+        {
+            "id" : "guajo-0",
+            "nombre": "Guajolota de Tamal Verde",
+            "precio" : 25,
+            "sabor" : {
+                "nombreSabor":"verde",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "guajo-1",
+            "nombre": "Guajolota de Tamal de Mole",
+            "precio" : 25,
+            "sabor" : {
+                "nombreSabor":"mole",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "guajo-2",
+            "nombre": "Guajolota de Tamal de Rajas",
+            "precio" : 25,
+            "sabor" : {
+                "nombreSabor":"rajas",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "guajo-3",
+            "nombre": "Guajolota de Tamal de Piña",
+            "precio" : 25,
+            "sabor" : {
+                "nombreSabor":"piña",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "guajo-4",
+            "nombre": "Guajolota de Tamal de Pasas",
+            "precio" : 25,
+            "sabor" : {
+                "nombreSabor":"pasas",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "guajo-5",
+            "nombre": "Guajolota de Tamal de Guayaba",
+            "precio" : 25,
+            "sabor" : {
+                "nombreSabor":"guayaba",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        }
+    ],
+    "bebidas": [
+        {
+            "id" : "bebida-0",
+            "nombre": "Champurrado",
+            "precio" : 12,
+            "sabor" : {
+                "nombreSabor":"champurrado",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "bebida-1",
+            "nombre": "Atole de Arroz con Leche",
+            "precio" : 12,
+            "sabor" : {
+                "nombreSabor":"arroz con leche",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "bebida-2",
+            "nombre": "Atole de Chocolate",
+            "precio" : 12,
+            "sabor" : {
+                "nombreSabor":"chocolate",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "bebida-3",
+            "nombre": "Atole de Café",
+            "precio" : 12,
+            "sabor" : {
+                "nombreSabor":"café",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        }
+    ],
+    "tamales" : [
+        {
+            "id" : "tamal-0",
+            "nombre": "Tamal Verde",
+            "precio" : 14,
+            "sabor" : {
+                "nombreSabor":"verde",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "tamal-1",
+            "nombre": "Tamal de Mole",
+            "precio" : 14,
+            "sabor" : {
+                "nombreSabor":"mole",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "tamal-2",
+            "nombre": "Tamal de Rajas",
+            "precio" : 14,
+            "sabor" : {
+                "nombreSabor":"rajas",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "tamal-3",
+            "nombre": "Tamal de Piña",
+            "precio" : 14,
+            "sabor" : {
+                "nombreSabor":"piña",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "tamal-4",
+            "nombre": "Tamal de Pasas",
+            "precio" : 14,
+            "sabor" : {
+                "nombreSabor":"pasas",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        },
+        {
+            "id" : "tamal-5",
+            "nombre": "Tamal de Guayaba",
+            "precio" : 14,
+            "sabor" : {
+                "nombreSabor":"guayaba",
+                "imagenSabor": ""
+            },
+            "imagen":""
+        }
+    ]
+}
