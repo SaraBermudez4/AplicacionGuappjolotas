@@ -1,9 +1,8 @@
-import './App.css';
 
 function App() {
   return (
     <div>
-      
+      <h1>Probando cambios</h1>
     </div>
   );
 }
