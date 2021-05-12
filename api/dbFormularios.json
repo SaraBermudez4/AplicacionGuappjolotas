@@ -1,0 +1,20 @@
+{
+    "login" : [
+        {
+            "id" : "formulario_uno",
+            "welcome": "",
+            "nombre": "Nombre de Usuario",
+            "password": "Contraseña",
+            "boton": "Ingresar"
+        }
+    ],
+    "registro" : [
+        {
+            "id" : "formulario_dos",
+            "welcome": "Bienvenido al registro",
+            "nombre": "Nombre de Usuario",
+            "password": "Contraseña",
+            "boton": "Registrarme"
+        }
+    ] 
+}
