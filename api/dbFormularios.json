@@ -2,15 +2,18 @@
     "login" : [
         {
             "id" : "formulario_uno",
+            "section": "login",
             "welcome": "",
             "nombre": "Nombre de Usuario",
             "password": "Contraseña",
             "boton": "Ingresar"
+            
         }
     ],
     "registro" : [
         {
             "id" : "formulario_dos",
+            "section": "registro",
             "welcome": "Bienvenido al registro",
             "nombre": "Nombre de Usuario",
             "password": "Contraseña",

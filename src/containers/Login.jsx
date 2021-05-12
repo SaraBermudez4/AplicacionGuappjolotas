@@ -7,6 +7,9 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../components/Logo.jsx';
 import { formularios } from '../utils/mocks/formularios';
 import axios from 'axios';
+import Categorieform from '../components/Categorieform.jsx';
+
+localStorage.setItem('formCategorie', "login");
 
 const PrincipalContainer = styled(Container)`
     background-color: #F6F6F9;
@@ -51,20 +54,21 @@ const StyledBottonRegistro = styled(Button)`
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.pruebaClick = this.pruebaClick.bind(this);
+        // this.pruebaClick = this.pruebaClick.bind(this);
         this.state = {
+            categorie: localStorage.getItem('formCategorie'),
             loading: true,
             error: null,
             data: undefined,
         };
     }
-    pruebaClick(e) {
-        e.preventDefault();
-        let nombre = document.getElementById('nombre-usuario').value;
-        localStorage.setItem("nombre", nombre);
-        let obtenerNombre = localStorage.getItem("nombre");
-        console.log(obtenerNombre);
-    }
+    // pruebaClick(e) {
+    //     e.preventDefault();
+    //     let nombre = document.getElementById('nombre-usuario').value;
+    //     localStorage.setItem("nombre", nombre);
+    //     let obtenerNombre = localStorage.getItem("nombre");
+    //     console.log(obtenerNombre);
+    // }
 
     fetchFormsData = () => {
         this.setState({
@@ -73,7 +77,7 @@ class Login extends React.Component {
         })
 
         axios
-            .get("http://localhost:3004/login")
+            .get(`http://localhost:3004/${this.state.categorie}`)
             .then(res => {
                 this.setState({
                     loading: false,
@@ -87,9 +91,15 @@ class Login extends React.Component {
                 })
             })
     }
-
+    // Renderiza los componentes una sola vez 
     componentDidMount() {
         this.fetchFormsData();
+    }
+    // Vuelve a renderizar los componentes 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.categorie !== this.state.categorie) {
+            this.fetchFormsData()
+        }
     }
 
     render() {
@@ -112,33 +122,19 @@ class Login extends React.Component {
                             <Logo />
                         </StyledCol >
                     </Row>
-                    {formularios.map(formulario => {
-                        return (
-                            <Row style={{ justifyContent: 'center', padding: '50px' }} key = {`${formulario.name} - ${formulario.boton }`}>
-                                <StyledForm>   
-                                    <Form.Label>{formulario.name}</Form.Label>
-                                    <Form.Group controlId="formBasicEmail" style={{ position: 'relative' }}>
-                                        <FontAwesomeIcon icon={faUser} style={{ position: 'absolute', pointerEvents: 'none', marginTop: '8px', marginLeft: '10px' }} />
-                                        <Form.Control type="text" placeholder="Ingresa Usuario" id='nombre-usuario' style={{ paddingLeft: '35px', paddingRight: '35px' }} />
-                                    </Form.Group>
-                                    <Form.Label>{formulario.contraseña}</Form.Label>
-                                    <Form.Group controlId="formBasicPassword" style={{ position: 'relative' }}>
-                                        <FontAwesomeIcon icon={faLock} style={{ position: 'absolute', pointerEvents: 'none', marginTop: '8px', marginLeft: '10px' }} />
-                                        <Form.Control type="password" placeholder="Contraseña" id='password-usuario' style={{ paddingLeft: '35px', paddingRight: '35px' }} />
-                                    </Form.Group>
-                                    <StyledButton type="submit" onClick={this.pruebaClick}>
-                                        {formulario.boton}
-                                    </StyledButton>
-                                </StyledForm>
-                                <StyledCol xs={12}>
-                                    <span style={{ paddingRight: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>No tengo una cuenta </span>
-                                    <div>
-                                        <StyledBottonRegistro variant="primary">Registrarme</StyledBottonRegistro>
-                                    </div>
-                                </StyledCol >
-                            </Row>
-                        )
-                    })}
+                    <Categorieform section={this.state.categorie} formularios={this.state.data} />
+                    <StyledCol xs={12}>
+                        <span style={{ paddingRight: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>No tengo una cuenta </span>
+                        <div>     
+                            <StyledBottonRegistro variant="primary" onClick={(e)=> {
+                                e.preventDefault()
+                                localStorage.setItem('formCategorie' , "registro")
+                                this.setState({
+                                    categorie: localStorage.getItem('formCategorie')
+                                })
+                            }}>Registrarme</StyledBottonRegistro>
+                        </div>
+                    </StyledCol >
                 </PrincipalContainer>
             </React.Fragment>
         )
