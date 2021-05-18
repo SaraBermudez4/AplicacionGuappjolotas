@@ -102,6 +102,14 @@ class Login extends React.Component {
         }
     }
 
+    handleClickSelection = (e, section) => {
+        e.preventDefault();
+        localStorage.setItem('formCategorie' , section)
+        this.setState({
+            categorie: localStorage.getItem('formCategorie')
+        })
+    }
+
     render() {
 
         if (this.state.loading == true && !this.state.data) {
@@ -122,19 +130,7 @@ class Login extends React.Component {
                             <Logo />
                         </StyledCol >
                     </Row>
-                    <Categorieform section={this.state.categorie} formularios={this.state.data} />
-                    <StyledCol xs={12}>
-                        <span style={{ paddingRight: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>No tengo una cuenta </span>
-                        <div>     
-                            <StyledBottonRegistro variant="primary" onClick={(e)=> {
-                                e.preventDefault()
-                                localStorage.setItem('formCategorie' , "registro")
-                                this.setState({
-                                    categorie: localStorage.getItem('formCategorie')
-                                })
-                            }}>Registrarme</StyledBottonRegistro>
-                        </div>
-                    </StyledCol >
+                    <Categorieform section={this.state.categorie} formularios={this.state.data} onClick = {this.handleClickSelection}/>
                 </PrincipalContainer>
             </React.Fragment>
         )
@@ -142,3 +138,10 @@ class Login extends React.Component {
 }
 
 export default Login;
+{/* <StyledBottonRegistro variant="primary" onClick={(e)=> {
+    e.preventDefault()
+    localStorage.setItem('formCategorie' , "registro")
+    this.setState({
+        categorie: localStorage.getItem('formCategorie')
+    })
+}}>Registrarme</StyledBottonRegistro> */}

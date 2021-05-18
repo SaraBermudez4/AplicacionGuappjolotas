@@ -6,7 +6,9 @@
             "welcome": "",
             "nombre": "Nombre de Usuario",
             "password": "Contraseña",
-            "boton": "Ingresar"
+            "boton": "Ingresar",
+            "descripcion": "No tengo una cuenta",
+            "interaccion": "Registrarme"
             
         }
     ],
@@ -17,7 +19,9 @@
             "welcome": "Bienvenido al registro",
             "nombre": "Nombre de Usuario",
             "password": "Contraseña",
-            "boton": "Registrarme"
+            "boton": "Registrarme",
+            "descripcion": "Ya tengo una cuenta",
+            "interaccion": "Volver"
         }
     ] 
 }
