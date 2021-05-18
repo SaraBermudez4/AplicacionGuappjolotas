@@ -15,11 +15,11 @@
             "cantidad": 1
         },
         {
-            "id" : "guajo-1",
-            "nombre": "Guajolota de Tamal de Mole",
+        "id" : "guajo-5",
+            "nombre": "Guajolota de Tamal de Guayaba",
             "precio" : 25,
-            "imagen":"https://i.ibb.co/qxLNFSP/g-mole.png",
-            "cantidad": 3
+            "imagen":"https://i.ibb.co/QbhLyWq/g-guayaba.png",
+            "cantidad": 12
         }
     ],
     "guajolotas" : [

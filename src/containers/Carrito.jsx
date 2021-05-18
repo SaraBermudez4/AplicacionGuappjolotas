@@ -86,27 +86,25 @@ class Carrito extends Component {
             categorie: section
         })
     }
-
+    
     render() {
         if (this.state.loading === true && !this.state.data) {
-            return <Inicio />
+                return <Inicio />
         }
 
         if (this.state.error) {
             return <h1>No se ha podido cargar la pagina</h1>
         }
-
-        console.log(this.state.data)
         
         return (
-            <>
+            <div style={{fontFamily: 'Inter'}}>
                 <HeaderCarrito />
                 {/* <FondoCarrito /> */}
                 <CategorieCarrito section="cart" categories={this.state.data} />
                 <NavFixed>
                     <NavButton>Pagar</NavButton>
                 </NavFixed>
-            </>
+            </div>
         )
     }
 }

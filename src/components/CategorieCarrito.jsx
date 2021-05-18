@@ -3,7 +3,16 @@ import {
     Flex,
     Spacer,
     Image,
-    Text
+    Text,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalCloseButton,
+    ModalBody,
+    ModalFooter,
+    Button,
+    useDisclosure
 } from "@chakra-ui/react"
 import styled from 'styled-components'
 //import { categories } from '../utils/mocks/categories'
@@ -34,15 +43,25 @@ const TextCCart1 = styled(Text)`
 `
 
 const CategorieCarrito = (props) => {
-    console.log(props)
-    
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
+    let acum = 0
+
+    props.categories.forEach(cart => {
+        let precio = cart.precio
+        let cantidad = cart.cantidad
+        acum += (precio * cantidad)
+
+    })
+
     return (
         <>
             {
                 props.categories.map(cart => {
                     return (
                         <DivCCart key={`"cart"-${cart.nombre}`}>
-                            <ButtonCCart>
+                            <ButtonCCart onClick={onOpen}>
                                 <Flex>
                                     <Image boxSize="56px" src={cart.imagen} alt={cart.nombre} />
                                     <Spacer />
@@ -63,9 +82,30 @@ const CategorieCarrito = (props) => {
                 <Flex>
                     <TextCCart1>Total</TextCCart1>
                     <Spacer />
-                    <TextCCart1>$137 MXN</TextCCart1>
+                    <TextCCart1>$
+                        {acum} MXN
+                    </TextCCart1>
                 </Flex>
             </TotalCCart>
+            <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Text fontWeight="bold" mb="1rem">
+                            You can scroll the content behind the modal
+                        </Text>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
+                            Close
+                        </Button>
+                        <Button variant="ghost">Secondary Action</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </>
     )
 }
