@@ -69,9 +69,14 @@ export default function Categorieform(props) {
                             <StyledBarraFooter>
                                 <Col xs={12} style = {{display: 'flex'}}>
                                     <span style={{ paddingRight: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '13px', color: 'black', fontWeight: '600' }}>{formulario.descripcion} </span>
-                                    <StyledBottonRegistro variant="primary" onClick = {(e) => {  
-                                        props.onClick(e, "registro")
-                                    }}>{formulario.interaccion}</StyledBottonRegistro>    
+                                    <StyledBottonRegistro variant="primary" onClick = {(e) => { 
+                                        if(props.section == 'login'){
+                                            props.onClick(e, "registro")
+                                        }
+                                        else{
+                                            props.onClick(e, "login")
+                                        }    
+                                    }}>{formulario.interaccion}</StyledBottonRegistro>
                                 </Col>
                             </StyledBarraFooter>
                         </Link>

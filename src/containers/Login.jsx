@@ -48,13 +48,14 @@ const StyledBottonRegistro = styled(Button)`
 
 `;
 
+// 
+
 // Components formulario 
 
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        // this.pruebaClick = this.pruebaClick.bind(this);
         this.state = {
             categorie: localStorage.getItem('formCategorie'),
             loading: true,
@@ -62,14 +63,6 @@ class Login extends React.Component {
             data: undefined,
         };
     }
-    // pruebaClick(e) {
-    //     e.preventDefault();
-    //     let nombre = document.getElementById('nombre-usuario').value;
-    //     localStorage.setItem("nombre", nombre);
-    //     let obtenerNombre = localStorage.getItem("nombre");
-    //     console.log(obtenerNombre);
-    // }
-
     fetchFormsData = () => {
         this.setState({
             loading: true,
@@ -109,7 +102,12 @@ class Login extends React.Component {
             categorie: localStorage.getItem('formCategorie')
         })
     }
-
+    
+    validacionLogin = () => {
+        
+    }
+    
+    
     render() {
 
         if (this.state.loading == true && !this.state.data) {

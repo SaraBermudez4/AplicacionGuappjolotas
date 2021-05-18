@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image } from 'react-bootstrap';
+// import ReactDOM from 'react-dom';
+// import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image } from 'react-bootstrap';
 import Login from '../containers/Login.jsx'
 // Elementos de enrutamiento 
-import{BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ChakraProvider } from "@chakra-ui/react"
+
 
 
 function App() {
@@ -12,10 +14,12 @@ function App() {
       <BrowserRouter>
         {/* Aca se ponen las rutas */}
         <Switch>
-            <Route path = '/' component = {Login} />
+          <ChakraProvider>
+            <Route path='/' component={Login} />
+          </ChakraProvider>
         </Switch>
       </BrowserRouter>
-        {/* <Login/> */}
+      {/* <Login/> */}
     </React.Fragment>
   );
 }
