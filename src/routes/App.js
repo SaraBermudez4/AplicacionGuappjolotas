@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 // Elementos de enrutamiento 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ChakraProvider } from "@chakra-ui/react"
@@ -18,13 +18,13 @@ function App() {
     <React.Fragment>
       {
         loading ?
-          <Entrada/>
-        :
-        <ChakraProvider>
-          <UserCheck />
-        </ChakraProvider>
+          <Entrada />
+          :
+          <ChakraProvider>
+            <UserCheck />
+          </ChakraProvider>
         // {/* <BrowserRouter>
-          
+
         //   <Switch>
         //     <ChakraProvider>
         //       <Route path='/' component={Login} />

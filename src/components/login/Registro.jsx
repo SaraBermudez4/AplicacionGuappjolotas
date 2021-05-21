@@ -2,7 +2,29 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image, Form } from 'react-bootstrap';
 import { useToast } from "@chakra-ui/react"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
+
+
+// Estilos 
+const StyledFormContainer = styled(Form)`
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+`
+const StyledButtomSend = styled.button`
+    background: #FA4A0C;
+    border: none;
+    box-shadow: 0px 10px 10px -6px black;
+    border-radius: 40px;
+    padding: 12px 24px;
+    color: #F6F6F9;
+`
+
+
+// import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 let usuario = [];
 // let c;
@@ -63,26 +85,30 @@ const Registro = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <h2>Registrarme</h2>
-            <Form className='container' onSubmit={envioRegistro} ref = {form_ref}>
-                <Form.Group controlId="exampleForm.ControlInput1">
+            <h2 style = {{ fontSize: '23px', fontWeight: 'bold', marginBottom: '10px' }}>Bienvenido al Registro</h2>
+            <StyledFormContainer className='container' onSubmit={envioRegistro} ref = {form_ref}>
+                <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Nombre de usuario</Form.Label>
-                    <Form.Control type="text" placeholder="Ingrese Usuario" onChange={cambiarEstado} name="nombreUsuario" maxlength = '10' required />
+                    <FontAwesomeIcon icon={faUser} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
+                    <Form.Control type="text" placeholder="Ingrese Usuario" onChange={cambiarEstado} name="nombreUsuario" maxlength = '10' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }} >Contraseña</Form.Label>
-                    <Form.Control type="password" placeholder="Ingrese Contraseña"  onChange={cambiarEstado} name="contraseña" maxlength = '16'  required />
+                    <FontAwesomeIcon icon={faLock} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
+                    <Form.Control type="password" placeholder="Ingrese Contraseña"  onChange={cambiarEstado} name="contraseña" maxlength = '16' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }} >Correo Electrónico</Form.Label>
-                    <Form.Control type="email" placeholder="Ingrese Correo Electrónico"  onChange={cambiarEstado} name="correo" required/>
+                    <FontAwesomeIcon icon={faEnvelope} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
+                    <Form.Control type="email" placeholder="Ingrese Correo Electrónico"  onChange={cambiarEstado} name="correo" style={{ paddingLeft: '35px', paddingRight: '35px' }} required/>
                 </Form.Group>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group style={{ position: 'relative'}}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Dirección</Form.Label>
-                    <Form.Control type="text" placeholder="Ingrese Dirección"  onChange={cambiarEstado} name="direccion" maxlength = '30' required/>
+                    <FontAwesomeIcon icon={faMapMarkerAlt } style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
+                    <Form.Control type="text" placeholder="Ingrese Dirección"  onChange={cambiarEstado} name="direccion" maxlength = '30' style={{ paddingLeft: '35px', paddingRight: '35px' }} required/>
                 </Form.Group>
-                <button type='submit' className='btn btn-primary'>Enviar</button>
-            </Form>
+                <StyledButtomSend type='submit' >Enviar</StyledButtomSend>
+            </StyledFormContainer>
         </div>
     )
 }
