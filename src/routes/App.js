@@ -13,4 +13,5 @@ function App() {
   );
 }
 
+//<Route path="/:section/:id" component={detalleProducto} />
 export default App;

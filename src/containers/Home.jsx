@@ -20,8 +20,9 @@ class Home extends Component {
         this.state = {
             categorie: localStorage.getItem('productCategorie'),
             loading: true,
-            error: null,
-            data: undefined
+            error: "",
+            data: "",
+            dataCategorie: []
         }
     }
 
@@ -46,9 +47,27 @@ class Home extends Component {
                 })
             })
     }
+    fetchProductosDataCategorie = () => {
 
+        axios
+            .get("http://localhost:3004/categorias")
+            .then(res => {
+                this.setState({
+                    loading: false,
+                    dataCategorie: res.data
+                })
+            })
+            .catch(error => {
+                this.setState({
+                    loading: false,
+                    error: error
+                })
+            })
+    }
+    
     componentDidMount() {
         this.fetchProductosData()
+        this.fetchProductosDataCategorie()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -87,7 +106,7 @@ class Home extends Component {
         return (
             <StyledHome>
                 <Header />
-                <CategoriaProductos section={this.state.categorie} productos={this.state.data} onClick={this.handleClickSelection} />
+                <CategoriaProductos section={this.state.categorie} productos={this.state.data} categorias={this.state.dataCategorie} onClick={this.handleClickSelection} />
             </StyledHome>
         )
     }

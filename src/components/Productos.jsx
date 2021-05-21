@@ -48,7 +48,7 @@ const Productos = (props) => {
                 <Stack>
                     {props.productos.map(producto => {
                         return (
-                            <Link to={`/${props.section}/${producto.id}`}>
+                            <Link to={`${props.section}/${producto.id}`}>
                                 <StyledBoxProductos h="40px" key={`${props.section}-${producto.id}`}>
                                     <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                                         <Box w="100%" h="10" marginTop="-10px">
@@ -70,23 +70,3 @@ const Productos = (props) => {
 }
 
 export default Productos
-
-/*<Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                    <Tab eventKey="home" title="Home">
-                    </Tab>
-                    <Tab eventKey="profile" title="Profile">
-                    </Tab>
-                    <Tab eventKey="contact" title="Contact" disabled>
-                    </Tab>
-                </Tabs>
-                <Tab.Content>
-                    <Tab.Pane eventKey="first">
-                        Hola que hace
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="second">
-                        Hola que haceeee
-                    </Tab.Pane>
-                    <Tab.Pane eventKey="thrid">
-                        Holaaaaa que haceeee
-                    </Tab.Pane>
-                </Tab.Content> */

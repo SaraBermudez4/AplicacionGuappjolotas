@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import { useLocation } from 'react-router'
+import queryString from 'query-string';
+import getProductoName from "../selectors/getProductoName";
 import styled from 'styled-components'
 import { Form, FormControl, Image, Row } from 'react-bootstrap'
 
@@ -56,7 +59,18 @@ const StyledInputSearch = styled(FormControl)`
 `
 
 
-const Header = () => {
+const Header = ({history}) => {
+
+    const location  = useLocation;
+    const { palabra = ""} = queryString.parse(location.search)
+
+    const productoFilter = useMemo(()=> getProductoName(palabra), [palabra])
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        //history.push(`?palabra=${palabra}`)
+        {console.log(productoFilter)}
+    }
 
     return (
         <>
@@ -65,7 +79,7 @@ const Header = () => {
                 <StyledImageCarrito src="https://i.ibb.co/ChmcXxb/vector-shop-cart.png" alt="Carrito" />
             </Row>
             <StyledTextEncabezado>Nada como una Guajolota para empezar el día</StyledTextEncabezado>
-            <StyledFormSearch>
+            <StyledFormSearch onSubmit = {handleSearch}>
                 <StyledIconSearch src="https://i.ibb.co/ssJCP66/vector-search.png" alt="Icono de busqueda" />
                 <StyledInputSearch type="text" id="search" placeholder="Sabor de guajolota, bebida..." />
             </StyledFormSearch>
