@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {
     Modal
 } from 'react-bootstrap'
@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react"
 import useCounter from '../hooks/useCounter'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const HeaderModal = styled(Modal.Header)`
     flex-direction: column;
@@ -65,8 +66,69 @@ const ButtonModal4 = styled.button`
 
 const ModalCarrito = ({ cart, handleClose }) => {
 
-   const { state, incremento, decremento } = useCounter(cart.cantidad)
+    const { state, incremento, decremento } = useCounter(cart.cantidad)
 
+    const cantidadRef = useRef('')
+
+    const editarCantidad = async (e) => {
+
+        const nuevaCantidad = cantidadRef.current.textContent
+
+        console.log(nuevaCantidad)
+
+        console.log(cart.id)
+
+        // function refreshPage() {
+        //     window.location.reload(false);
+        // }
+
+        if (nuevaCantidad === 0) {
+            console.log('hola')
+
+            const url =  `http://localhost:3004/cart/${cart.id}`
+
+            try {
+
+                const resultado = await axios.delete(url)
+
+                if (resultado.status === 200) {
+                    console.log('Producto eliminado');
+                }
+
+                window.location.reload()
+            } catch {
+                console.log('Error en la eliminacion')
+            }
+        } else {
+            console.log('Actualizar producto')
+
+            const actualizarCantidad = {
+                nombre: cart.nombre,
+                precio: cart.precio,
+                imagen: cart.imagen,
+                cantidad: parseInt(nuevaCantidad)
+            }
+
+            console.log(actualizarCantidad)
+
+            const url =  `http://localhost:3004/cart/${cart.id}`
+
+            console.log(url);
+
+            try {
+                const resultado = await axios.put(url, actualizarCantidad)
+
+                if (resultado.status === 200) {
+                    console.log('Producto actualizado');
+                }
+
+                window.location.reload()
+            } catch {
+                console.log('Error en la actualizacion');
+            }
+        }
+    }
+    
     return (
         <div className="holaa3">
             <HeaderModal>
@@ -75,24 +137,32 @@ const ModalCarrito = ({ cart, handleClose }) => {
                 <TextModal2>${cart.precio * cart.cantidad} MXN</TextModal2>
             </HeaderModal>
             <BodyModal>
-                    {
-                        (state === 0)
+                {
+                    (state === 0)
                         ?
                         <Image boxSize="40px" src="https://i.ibb.co/bQtPKQw/minus-circle-gray.png" alt="minus-circle-gray" />
                         :
                         <button onClick={decremento}><Image src="https://i.ibb.co/wRnV6YJ/minus-circle.png" alt="minus-circle" /></button>
-                    }
-                    <TextModal3>{state}</TextModal3>
-                    <button onClick={incremento}><Image src="https://i.ibb.co/gWVpXrD/plus-circle.png" alt="plus-circle" /></button>
+                }
+                <TextModal3 ref={cantidadRef}>{state}</TextModal3>
+                <button onClick={incremento}><Image src="https://i.ibb.co/gWVpXrD/plus-circle.png" alt="plus-circle" /></button>
             </BodyModal>
             <FooterModal>
-                
+
                 <ButtonModal4 onClick={handleClose}>
                     Cerrar
                 </ButtonModal4>
-                <ButtonModal3 onClick={handleClose}>
-                    Actualizar
-                </ButtonModal3>
+                {
+                    (state === cart.cantidad)
+                        ?
+                        <ButtonModal3 onClick={handleClose} style={{opacity: '0.5'}}>
+                            Actualizar
+                        </ButtonModal3>
+                        :
+                        <ButtonModal3 onClick={editarCantidad}>
+                            Actualizar
+                        </ButtonModal3>
+                }
             </FooterModal>
             {/* <Modal.Header closeButton>
                 <Modal.Title>Modal heading</Modal.Title>
