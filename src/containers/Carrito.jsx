@@ -1,38 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import styled from 'styled-components'
 import HeaderCarrito from '../components/HeaderCarrito'
-// import FondoCarrito from '../components/FondoCarrito'
-import Inicio from '../components/Inicio'
-import CategorieCarrito from '../components/CategorieCarrito'
+// import Inicio from '../components/Inicio'
+import CarritoOpacityA from '../components/CarritoOpacityA'
+import CarritoOpacityM from '../components/CarritoOpacityM'
 
 // const NoProductos = styled.div`
 
 // `
-
-const NavFixed = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 101px;
-  background-color: #F2F2F2;
-  text-align: center;
-  opacity: 0.5;
-`
-
-const NavButton = styled.button`
-    margin-top: 17px;
-    width: 312px;
-    height: 69px;
-    text-align: center;
-    border-radius: 40px;
-    background-color: #FA4A0C;
-    border: none;
-    color: #F6F6F9;
-`
 
 localStorage.setItem('productsCarrito', "cart")
 
@@ -89,7 +64,7 @@ class Carrito extends Component {
     
     render() {
         if (this.state.loading === true && !this.state.data) {
-                return <Inicio />
+                return <h1>Se a cargado</h1>
         }
 
         if (this.state.error) {
@@ -99,11 +74,18 @@ class Carrito extends Component {
         return (
             <div style={{fontFamily: 'Inter'}}>
                 <HeaderCarrito />
-                {/* <FondoCarrito /> */}
-                <CategorieCarrito section="cart" categories={this.state.data} />
-                <NavFixed>
-                    <NavButton>Pagar</NavButton>
-                </NavFixed>
+                {
+                    (this.state.data.length < 1)
+                    ? 
+                    <>
+                        <CarritoOpacityM />
+                    </>
+                    :
+                    <>
+                        <CarritoOpacityA section="cart" categories={this.state.data} />
+                    </>
+                }
+
             </div>
         )
     }

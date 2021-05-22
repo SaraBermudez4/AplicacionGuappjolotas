@@ -1,24 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Flex,
     Spacer,
     Image,
-    Text,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalCloseButton,
-    ModalBody,
-    ModalFooter,
-    Button,
-    useDisclosure
+    Text
 } from "@chakra-ui/react"
+import {
+    Modal
+} from 'react-bootstrap'
 import styled from 'styled-components'
-//import { categories } from '../utils/mocks/categories'
+import ModalCarrito from './ModalCarrito'
+import '../style/style.css'
+
+const DivCart = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-items: center;
+    align-items: center;
+`
 
 const DivCCart = styled.div`
     text-align: center;
+    margin-bottom: 16px;
 `
 
 const ButtonCCart = styled.button`
@@ -29,48 +32,98 @@ const ButtonCCart = styled.button`
 `
 
 const TotalCCart = styled.div`
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    padding: 16px;
     width: 312px;
     height: 53px;
-    margin: 0 0 0 50px;
+    background: #ffffff;
+    box-shadow: 0px 10px 40px rgb(0 0 0 / 3%);
     border-radius: 20px;
-    background-color: #ffffff;
 `
 
 const TextCCart1 = styled(Text)`
-    margin-left: 20px;
-    margin-right: 20px;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
 `
+
+const TextDivNameCant = styled.div`
+    margin: 12px;
+`
+
+const TextPName = styled(Text)`
+    font-size: 12px;
+    font-weight: bold;
+`
+
+const TextPCant = styled(Text)`
+    color: #FA4A0C;
+    font-weight: bold;
+    font-size: 12px;
+`
+
+const TextPPrecio = styled(Text)`
+    margin: 15px 0;
+    color: #FA4A0C;
+    font-weight: bold;
+    font-size: 14px;
+`
+
+const ModalCCart = styled(Modal)`
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+`
+
+let i = {}
 
 const CategorieCarrito = (props) => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [show, setShow] = useState(false);
+
+
+    const handleClose = () => setShow(false);
+    const handleShow = (e) => {
+        i = e
+        setShow(true)
+    };
 
     let acum = 0
+    let precio
+    let cantidad
 
     props.categories.forEach(cart => {
-        let precio = cart.precio
-        let cantidad = cart.cantidad
+        precio = cart.precio
+        cantidad = cart.cantidad
         acum += (precio * cantidad)
 
     })
 
+    const miFuncion = (e) => {
+        handleShow(e)
+    }
+
     return (
-        <>
+        <DivCart>
             {
                 props.categories.map(cart => {
                     return (
                         <DivCCart key={`"cart"-${cart.nombre}`}>
-                            <ButtonCCart onClick={onOpen}>
+                            <ButtonCCart onClick={(e) => {
+                                    (e.target.id === cart.id)
+                                    &&  miFuncion(cart)
+                                }}>
                                 <Flex>
                                     <Image boxSize="56px" src={cart.imagen} alt={cart.nombre} />
+                                    <TextDivNameCant>
+                                        <TextPName id={cart.id}>{cart.nombre}</TextPName>
+                                        <TextPCant>x{cart.cantidad}</TextPCant>
+                                    </TextDivNameCant>
                                     <Spacer />
-                                    <div>
-                                        <Text>{cart.nombre}</Text>
-                                        <Text>x{cart.cantidad}</Text>
-                                    </div>
-                                    <Spacer />
-                                    <Text>${cart.precio * cart.cantidad} MXN</Text>
+                                    <TextPPrecio>${cart.precio * cart.cantidad} MXN</TextPPrecio>
                                 </Flex>
                             </ButtonCCart>
                         </DivCCart>
@@ -79,34 +132,15 @@ const CategorieCarrito = (props) => {
             }
             <hr />
             <TotalCCart>
-                <Flex>
-                    <TextCCart1>Total</TextCCart1>
-                    <Spacer />
-                    <TextCCart1>$
+                <TextCCart1>Total</TextCCart1>
+                <TextCCart1 style={{ color: "#FA4A0C" }}>$
                         {acum} MXN
                     </TextCCart1>
-                </Flex>
             </TotalCCart>
-            <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <Text fontWeight="bold" mb="1rem">
-                            You can scroll the content behind the modal
-                        </Text>
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Button variant="ghost">Secondary Action</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
+            <ModalCCart className="holaa" show={show} onHide={handleClose} >
+                <ModalCarrito cart={i} handleClose={handleClose} />
+            </ModalCCart>
+        </DivCart>
     )
 }
 

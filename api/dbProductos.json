@@ -13,13 +13,6 @@
             "precio" : 12,
             "imagen":"https://i.ibb.co/XLRKgTB/b-chocolate.png",
             "cantidad": 1
-        },
-        {
-        "id" : "guajo-5",
-            "nombre": "Guajolota de Tamal de Guayaba",
-            "precio" : 25,
-            "imagen":"https://i.ibb.co/QbhLyWq/g-guayaba.png",
-            "cantidad": 12
         }
     ],
     "guajolotas" : [
