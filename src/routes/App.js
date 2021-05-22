@@ -51,6 +51,7 @@ function App() {
           {/* <Route exact path="/logout" component={Logout} /> */}
           <Route exact path="/home" component={Home} />
           <Route exact path = "/detalle" component={Descripcion}/>
+          
         </ChakraProvider>
       </Switch>
     </BrowserRouter>
@@ -58,4 +59,5 @@ function App() {
   );
 }
 //<Route  path="/" component={Home} <Route exact path='/login' component={LoginR} />/>
+//<Route path="/cart" component={Carrito} />
 export default App;
