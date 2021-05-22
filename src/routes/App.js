@@ -1,17 +1,26 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+// Elementos de enrutamiento 
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ChakraProvider } from "@chakra-ui/react"
+import UserCheck from '../components/login/UserCheck.jsx'
+import Entrada from '../components/login/Entrada.jsx';
+import Home from '../components/home/Home.jsx'
+import LoginR from '../components/LoginR.jsx';
 
-import Home from '../components/home/Home';
 
 function App() {
+
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <ChakraProvider>
+          <Route path='/login' component={LoginR} />
+          <Route exact path="/" component={Home} />
+        </ChakraProvider>
       </Switch>
     </BrowserRouter>
+
   );
 }
 
-//<Route path="/:section/:id" component={detalleProducto} />
 export default App;
