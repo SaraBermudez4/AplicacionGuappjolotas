@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import HeaderCarrito from '../../components/carrito/HeaderCarrito'
-// import Inicio from '../components/Inicio'
 import CarritoOpacityA from '../../components/carrito/CarritoOpacityA'
 import CarritoOpacityM from '../../components/carrito/CarritoOpacityM'
-
-// const NoProductos = styled.div`
-
-// `
 
 localStorage.setItem('productsCarrito', "cart")
 

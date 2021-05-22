@@ -4,7 +4,8 @@ import {
 } from 'react-bootstrap'
 import {
     Image,
-    Text
+    Text,
+    useToast
 } from "@chakra-ui/react"
 import useCounter from '../../hooks/useCounter'
 import styled from 'styled-components'
@@ -70,21 +71,13 @@ const ModalCarrito = ({ cart, handleClose }) => {
 
     const cantidadRef = useRef('')
 
+    const toast = useToast()
+
     const editarCantidad = async (e) => {
 
         const nuevaCantidad = cantidadRef.current.textContent
 
-        console.log(nuevaCantidad)
-
-        console.log(cart.id)
-
-        // function refreshPage() {
-        //     window.location.reload(false);
-        // }
-
         if (nuevaCantidad === 0) {
-            console.log('hola')
-
             const url =  `http://localhost:3004/cart/${cart.id}`
 
             try {
@@ -92,16 +85,28 @@ const ModalCarrito = ({ cart, handleClose }) => {
                 const resultado = await axios.delete(url)
 
                 if (resultado.status === 200) {
-                    console.log('Producto eliminado');
+                    toast({
+                        title: "Eliminado",
+                        description: "Su producto se elimino correctamente",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
                 }
 
-                window.location.reload()
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
             } catch {
-                console.log('Error en la eliminacion')
+                toast({
+                    title: "Problemas",
+                    description: "No se pudo eliminar su producto",
+                    status: "success",
+                    duration: 9000,
+                    isClosable: true,
+                })
             }
         } else {
-            console.log('Actualizar producto')
-
             const actualizarCantidad = {
                 nombre: cart.nombre,
                 precio: cart.precio,
@@ -109,22 +114,32 @@ const ModalCarrito = ({ cart, handleClose }) => {
                 cantidad: parseInt(nuevaCantidad)
             }
 
-            console.log(actualizarCantidad)
-
             const url =  `http://localhost:3004/cart/${cart.id}`
-
-            console.log(url);
 
             try {
                 const resultado = await axios.put(url, actualizarCantidad)
 
                 if (resultado.status === 200) {
-                    console.log('Producto actualizado');
+                    toast({
+                        title: "Actualizado",
+                        description: "Su producto se actualizo correctamente",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
                 }
 
-                window.location.reload()
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
             } catch {
-                console.log('Error en la actualizacion');
+                toast({
+                    title: "Problemas",
+                    description: "No se pudo actualizar su producto",
+                    status: "warning",
+                    duration: 9000,
+                    isClosable: true,
+                })
             }
         }
     }
@@ -164,38 +179,7 @@ const ModalCarrito = ({ cart, handleClose }) => {
                         </ButtonModal3>
                 }
             </FooterModal>
-            {/* <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                </Button>
-            </Modal.Footer> */}
         </div>
-        // <ModalContent>
-        //     {/* {
-        //         ()
-        //     } */}
-        //     <Image boxSize="80px" src={props.categories.imagen} alt={props.categories.nombre} />
-        //     <Text fontWeight="bold">{props.categories.nombre}</Text>
-        //     <Text fontWeight="bold" mb="1rem">${props.categories.precio * props.categories.cantidad} MXN</Text>
-        //     <Flex>
-        //         <Button>
-        //             <Image boxSize="40px" src="https://i.ibb.co/HChhBq0/minus-circlex4.png" alt="minus" />
-        //         </Button>
-        //         <Text fontWeight="bold" fontSize="2xl">{props.categories.cantidad}</Text>
-        //         <Button>
-        //             <Image boxSize="40px" src="https://i.ibb.co/z4CDD2f/plus-circlex4.png" alt="plus" />
-        //         </Button>
-
-        //     </Flex>
-        //     <Button mr={3} background="#FA4A0C" color="white">Actualizar</Button>
-        // </ModalContent>
     )
 }
 
