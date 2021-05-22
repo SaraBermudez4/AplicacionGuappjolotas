@@ -48,7 +48,10 @@ class Home extends Component {
             })
     }
     fetchProductosDataCategorie = () => {
-
+        this.setState({
+            loading: true,
+            error: null
+        })
         axios
             .get("http://localhost:3004/categorias")
             .then(res => {

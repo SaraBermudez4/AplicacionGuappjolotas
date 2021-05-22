@@ -4,19 +4,9 @@ import queryString from 'query-string';
 import getProductoName from "../../selectors/getProductoName";
 import styled from 'styled-components'
 import { Form, FormControl, Image, Row } from 'react-bootstrap'
-
-const StyledImageLogo = styled(Image)`
-    width: 64px;
-    height: 64px;
-`
-
-const StyledImageCarrito = styled(Image)`
-    width: 24px;
-    height: 24px;
-    float: right;
-    margin-top: -40px;
-    margin-bottom: 15px;
-`
+import { Link } from "react-router-dom"
+import { Grid, GridItem } from '@chakra-ui/layout';
+import useForm from '../../hooks/useForm';
 
 const StyledTextEncabezado = styled.h1`
     font-family: Inter;
@@ -46,7 +36,6 @@ const StyledIconSearch = styled(Image)`
 
 const StyledInputSearch = styled(FormControl)`
     background: #E7E7E7;
-    height: 40px;
     color: #65737e;
     border: none;
     font-family: Inter;
@@ -57,32 +46,33 @@ const StyledInputSearch = styled(FormControl)`
     color: #9A9A9D;
     margin-top: 10px;
 `
+const StyledLogo = styled(GridItem)`
+    width:64px;
+    height:64px;
+`
 
+const StyledCarrito = styled(GridItem)`
+    float: right;
+    margin-top:24px;
+    width:24px;
+    height:24px;
+`
 
-const Header = ({history}) => {
-
-    const location  = useLocation;
-    const { palabra = ""} = queryString.parse(location.search)
-
-    const productoFilter = useMemo(()=> getProductoName(palabra), [palabra])
-
-    const handleSearch = (e) => {
-        e.preventDefault()
-        //history.push(`?palabra=${palabra}`)
-        {console.log(productoFilter)}
-    }
+const Header = () => {
 
     return (
         <>
-            <Row>
-                <StyledImageLogo src="https://i.ibb.co/xLYZydk/logo.png" alt="Imagen de logo" />
-                <StyledImageCarrito src="https://i.ibb.co/ChmcXxb/vector-shop-cart.png" alt="Carrito" />
-            </Row>
+            <Grid templateColumns="repeat(5, 1fr)" gap={4}>
+                <StyledLogo><img src="https://i.ibb.co/xLYZydk/logo.png" alt="Imagen de logo" /></StyledLogo>
+                <StyledCarrito colStart={6} colEnd={7} h="10"><img src="https://i.ibb.co/ChmcXxb/vector-shop-cart.png" alt="vector-shop-cart" border="0" /></StyledCarrito>
+            </Grid>
             <StyledTextEncabezado>Nada como una Guajolota para empezar el día</StyledTextEncabezado>
-            <StyledFormSearch onSubmit = {handleSearch}>
-                <StyledIconSearch src="https://i.ibb.co/ssJCP66/vector-search.png" alt="Icono de busqueda" />
-                <StyledInputSearch type="text" id="search" placeholder="Sabor de guajolota, bebida..." />
-            </StyledFormSearch>
+            <Link to="/search">
+                <StyledFormSearch>
+                    <StyledIconSearch src="https://i.ibb.co/ssJCP66/vector-search.png" alt="Icono de busqueda" />
+                    <StyledInputSearch type="text" id="search" placeholder="Sabor de guajolota, bebida..." onChange={handleInputChange} autoComplete="off" />
+                </StyledFormSearch>
+            </Link>
         </>
     )
 }

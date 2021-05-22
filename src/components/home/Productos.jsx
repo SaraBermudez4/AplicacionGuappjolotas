@@ -49,7 +49,7 @@ const Productos = (props) => {
                     {props.productos.map(producto => {
                         return (
                             <Link to={`${props.section}/${producto.id}`}>
-                                <StyledBoxProductos h="40px" key={`${props.section}-${producto.id}`}>
+                                <StyledBoxProductos key={`${props.section}-${producto.id}`}>
                                     <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                                         <Box w="100%" h="10" marginTop="-10px">
                                             <StyledImageProducto src={producto.imagen} alt="Guajalota verde" />

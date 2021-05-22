@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image, Form } from 'react-bootstrap';
 import { useToast } from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-
+import { Link, Redirect } from 'react-router-dom'
+let global 
 const StyledFormContainer = styled(Container)`
     display: flex;
     justify-content: center;
@@ -31,51 +32,81 @@ const StyledButtom = styled.button`
 let users;
 
 const Inicio = () => {
-
+    const logueado = useRef("/")
     const toast = useToast()
     const usuarios = JSON.parse(localStorage.getItem("usuarios"))
     console.log(usuarios);
     const envioInicio = () => {
         let name = document.getElementById('user').value;
         let password = document.getElementById('password').value;
-        console.log(name, password);
-        let verde = false;
-        let rojo = false;
-        let naranja = false;
-        if (usuarios == null) {
+        if (name == "" || password == "") {
             toast({
-                title: "Usuario no registrado",
-                description: "Registrate primero para poder ingresar",
-                status: "info",
+                title: "Error",
+                description: "Por favor llene todos los campos",
+                status: "warning",
                 duration: 9000,
                 isClosable: true,
             })
-        }
-        else {
-            users = usuarios.filter((u) => u.nombreUsuario == name)
-            // if(name == u.nombreUsuario){
-            //     return console.log("Hola!");
-            // }
-            if (password == users[0].contraseña) {
+        } else {
+            // console.log(name, password);
+            if (usuarios == null) {
                 toast({
-                    title: "Bienvenido",
-                    description: "Usted ha ingresado satisfactoriamente",
-                    status: "success",
+                    title: "Usuario no registrado",
+                    description: "Registrate primero para poder ingresar",
+                    status: "info",
                     duration: 9000,
                     isClosable: true,
                 })
             }
             else {
-                toast({
-                    title: "Datos erróneos",
-                    description: "Valide sus datos o realice el registro",
-                    status: "error",
-                    duration: 9000,
-                    isClosable: true,
-                })
+                users = usuarios.filter((u) => u.nombreUsuario == name)
+                console.log(users[0]);
+                if (users[0] == undefined) {
+                    toast({
+                        title: "Datos erróneos",
+                        description: "Valide sus datos o realice el registro",
+                        status: "error",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+
+                } else {
+
+                    if (password == users[0].contraseña) {
+                        toast({
+                            title: "Bienvenido",
+                            description: "Usted ha ingresado satisfactoriamente",
+                            status: "success",
+                            duration: 9000,
+                            isClosable: true,
+                        })
+                        //return console.log("Hola");
+                        //<Redirect to = "/"/>
+                        //<Redirect to = {global}/>
+                        //global = "/"
+                        localStorage.setItem("logueado", true)
+                        //this.props.history.push('/home');
+                    }
+                    else {
+                        toast({
+                            title: "Datos erróneos",
+                            description: "Valide sus datos o realice el registro",
+                            status: "error",
+                            duration: 9000,
+                            isClosable: true,
+                        })
+                        localStorage.setItem("logueado", false)
+                    }
+                }
             }
-            console.log(users);
+            //verifyRoute()
         }
+        //const verifyRoute = () => {
+            if (localStorage.getItem('logueado')) {
+                <Redirect to = "/"/>
+            }
+        //};
+        
     }
 
     useEffect(() => {
@@ -83,12 +114,12 @@ const Inicio = () => {
         console.log("componentDidUpdate");
 
         return () => {
-            // componentWillUnmount
             console.log("componentWillUnmount");
         }
 
     });
     return (
+
         <StyledFormContainer>
             <Row>
                 <Col xs={12}>
@@ -100,16 +131,18 @@ const Inicio = () => {
                 <Form.Group style={{ position: 'relative' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Nombre de usuario</Form.Label>
                     <FontAwesomeIcon icon={faUser} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="text" placeholder="Ingrese Usuario" id='user' style={{ paddingLeft: '35px', paddingRight: '35px' }}/>
+                    <Form.Control type="text" placeholder="Ingrese Usuario" id='user' style={{ paddingLeft: '35px', paddingRight: '35px' }} />
                 </Form.Group>
                 {/* Contraseña */}
-                <Form.Group  style={{ position: 'relative' }}>
+                <Form.Group style={{ position: 'relative' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Contraseña</Form.Label>
                     <FontAwesomeIcon icon={faLock} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="password" placeholder="Ingrese Contraseña" id='password' style={{ paddingLeft: '35px', paddingRight: '35px' }}/>
+                    <Form.Control type="password" placeholder="Ingrese Contraseña" id='password' style={{ paddingLeft: '35px', paddingRight: '35px' }} />
                 </Form.Group>
             </Form>
-            <StyledButtom className='btn btn-primary' onClick={envioInicio}>Entrar</StyledButtom>
+            <StyledButtom className='btn btn-primary' onClick={envioInicio}>Entrar
+                
+            </StyledButtom>
         </StyledFormContainer>
     )
 }

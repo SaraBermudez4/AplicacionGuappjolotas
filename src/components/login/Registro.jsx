@@ -90,12 +90,12 @@ const Registro = () => {
                 <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Nombre de usuario</Form.Label>
                     <FontAwesomeIcon icon={faUser} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="text" placeholder="Ingrese Usuario" onChange={cambiarEstado} name="nombreUsuario" maxlength = '10' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
+                    <Form.Control type="text" placeholder="Ingrese Usuario" onChange={cambiarEstado} name="nombreUsuario" maxLength = '10' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
                 <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }} >Contraseña</Form.Label>
                     <FontAwesomeIcon icon={faLock} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="password" placeholder="Ingrese Contraseña"  onChange={cambiarEstado} name="contraseña" maxlength = '16' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
+                    <Form.Control type="password" placeholder="Ingrese Contraseña"  onChange={cambiarEstado} name="contraseña" maxLength = '16' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
                 <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }} >Correo Electrónico</Form.Label>
@@ -105,7 +105,7 @@ const Registro = () => {
                 <Form.Group style={{ position: 'relative'}}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Dirección</Form.Label>
                     <FontAwesomeIcon icon={faMapMarkerAlt } style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="text" placeholder="Ingrese Dirección"  onChange={cambiarEstado} name="direccion" maxlength = '30' style={{ paddingLeft: '35px', paddingRight: '35px' }} required/>
+                    <Form.Control type="text" placeholder="Ingrese Dirección"  onChange={cambiarEstado} name="direccion" maxLength = '30' style={{ paddingLeft: '35px', paddingRight: '35px' }} required/>
                 </Form.Group>
                 <StyledButtomSend type='submit' >Enviar</StyledButtomSend>
             </StyledFormContainer>
