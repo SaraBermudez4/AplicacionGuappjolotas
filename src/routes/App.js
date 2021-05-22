@@ -7,6 +7,7 @@ import Entrada from '../components/login/Entrada.jsx';
 import Home from '../components/home/Home'
 import LoginR from '../components/LoginR';
 import Search from '../components/search/Search.jsx';
+import Descripcion from '../containers/descripcion/Descripcion.jsx';
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
           <Route exact path='/search' component={Search} />
           {/* <Route exact path="/logout" component={Logout} /> */}
           <Route exact path="/home" component={Home} />
+          <Route exact path = "/detalle" component={Descripcion}/>
         </ChakraProvider>
       </Switch>
     </BrowserRouter>
