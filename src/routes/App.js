@@ -11,7 +11,7 @@ import Search from '../components/home/Search.jsx';
 function App() {
 
   const loggedIn = localStorage.getItem("logueado")
-
+  console.log(loggedIn);
   // const isAutenticated = () => {
   //   return localStorage.getItem("logueado")
   // }
@@ -22,12 +22,12 @@ function App() {
     
   // }
 
-  const Login = () => {
-    return (
-      <Route exact path="/">
-        <Redirect to="/home" />
-      </Route>)
-  }
+  // const Login = () => {
+  //   return (
+  //     <Route exact path="/">
+  //       <Redirect to="/home" />
+  //     </Route>)
+  // }
 
   // const Logout = () => {
   //   localStorage.removeItem("logueado")
@@ -44,8 +44,8 @@ function App() {
             {loggedIn ? <Redirect to="/home" /> : <LoginR />}
           </Route>
           
-          <Route exact path='/' component={LoginR} />
-          <Route exact path='/login' component={Login} />
+          {/* <Route exact path='/' component={LoginR} /> */}
+          {/* <Route exact path='/login' component={Login} /> */}
           <Route exact path='/search' component={Search} />
           {/* <Route exact path="/logout" component={Logout} /> */}
           <Route exact path="/home" component={Home} />

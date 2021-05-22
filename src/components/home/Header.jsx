@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react'
 import { useLocation } from 'react-router'
 import queryString from 'query-string';
-import getProductoName from "../../selectors/getProductoName";
 import styled from 'styled-components'
-import { Form, FormControl, Image, Row } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 import { Grid, GridItem } from '@chakra-ui/layout';
-import useForm from '../../hooks/useForm';
 
 const StyledTextEncabezado = styled.h1`
     font-family: Inter;
@@ -16,35 +13,6 @@ const StyledTextEncabezado = styled.h1`
     line-height: 41px;
     color: #0D0D0D;
     margin-top: 32px;
-`
-
-const StyledFormSearch = styled(Form)`
-    background: #E7E7E7;
-    border-radius: 30px;
-    color: #63717f;
-    height: 60px;
-    width: 100%;
-    margin-top: 32px;
-`
-const StyledIconSearch = styled(Image)`
-    font-size: 18px;
-    
-    margin-right: 8px;
-    margin-left: 28px;
-    display: inline-block;
-`
-
-const StyledInputSearch = styled(FormControl)`
-    background: #E7E7E7;
-    color: #65737e;
-    border: none;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17px;
-    line-height: 21px;
-    color: #9A9A9D;
-    margin-top: 10px;
 `
 const StyledLogo = styled(GridItem)`
     width:64px;
@@ -68,10 +36,7 @@ const Header = () => {
             </Grid>
             <StyledTextEncabezado>Nada como una Guajolota para empezar el día</StyledTextEncabezado>
             <Link to="/search">
-                <StyledFormSearch>
-                    <StyledIconSearch src="https://i.ibb.co/ssJCP66/vector-search.png" alt="Icono de busqueda" />
-                    <StyledInputSearch type="text" id="search" placeholder="Sabor de guajolota, bebida..." onChange={handleInputChange} autoComplete="off" />
-                </StyledFormSearch>
+                Buscar
             </Link>
         </>
     )

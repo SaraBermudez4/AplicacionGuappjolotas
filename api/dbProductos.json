@@ -1,11 +1,27 @@
 {
+    "cart": [
+        {
+            "id": "guajo-0",
+            "nombre": "Guajolota de Tamal Verde",
+            "precio": 25,
+            "imagen": "https://i.ibb.co/f95xBTX/g-verde.png",
+            "cantidad": 2
+        },
+        {
+            "nombre": "Champurrado",
+            "precio": 12,
+            "imagen": "https://i.ibb.co/NxFCRm5/b-champurrado.png",
+            "cantidad": 1,
+            "id": "bebida-0"
+        }
+    ],
     "guajolotas": [
         {
             "id": "guajo-0",
             "nombre": "Guajolota de Tamal Verde",
             "precio": 25,
             "sabor": {
-                "nombreSabor": "verde",
+                "nombreSabor": "Verde",
                 "imagenSabor": "https://i.ibb.co/crTNfY4/s-verde.png"
             },
             "imagen": "https://i.ibb.co/f95xBTX/g-verde.png"
@@ -15,7 +31,7 @@
             "nombre": "Guajolota de Tamal de Mole",
             "precio": 25,
             "sabor": {
-                "nombreSabor": "mole",
+                "nombreSabor": "Mole",
                 "imagenSabor": "https://i.ibb.co/BNfgp20/s-mole.png"
             },
             "imagen": "https://i.ibb.co/qxLNFSP/g-mole.png"
@@ -25,7 +41,7 @@
             "nombre": "Guajolota de Tamal de Rajas",
             "precio": 25,
             "sabor": {
-                "nombreSabor": "rajas",
+                "nombreSabor": "Rajas",
                 "imagenSabor": "https://i.ibb.co/x6vgZZj/s-rajas.png"
             },
             "imagen": "https://i.ibb.co/8b7zK20/g-rajas.png"
@@ -35,7 +51,7 @@
             "nombre": "Guajolota de Tamal de Piña",
             "precio": 25,
             "sabor": {
-                "nombreSabor": "piña",
+                "nombreSabor": "Piña",
                 "imagenSabor": "https://i.ibb.co/tb4qQm2/s-pina.png"
             },
             "imagen": "https://i.ibb.co/bbR7PZs/g-pina.png"
@@ -45,7 +61,7 @@
             "nombre": "Guajolota de Tamal de Pasas",
             "precio": 25,
             "sabor": {
-                "nombreSabor": "pasas",
+                "nombreSabor": "Pasas",
                 "imagenSabor": "https://i.ibb.co/crjppmH/s-pasas.png"
             },
             "imagen": "https://i.ibb.co/MR65dGW/g-pasas.png"
@@ -55,7 +71,7 @@
             "nombre": "Guajolota de Tamal de Guayaba",
             "precio": 25,
             "sabor": {
-                "nombreSabor": "guayaba",
+                "nombreSabor": "Guayaba",
                 "imagenSabor": "https://i.ibb.co/KFhQmYT/s-guayaba.png"
             },
             "imagen": "https://i.ibb.co/QbhLyWq/g-guayaba.png"
@@ -67,7 +83,7 @@
             "nombre": "Champurrado",
             "precio": 12,
             "sabor": {
-                "nombreSabor": "champurrado",
+                "nombreSabor": "Champurrado",
                 "imagenSabor": "https://i.ibb.co/dWgYy67/s-champurrado.png"
             },
             "imagen": "https://i.ibb.co/NxFCRm5/b-champurrado.png"
@@ -77,7 +93,7 @@
             "nombre": "Atole de Arroz con Leche",
             "precio": 12,
             "sabor": {
-                "nombreSabor": "arroz con leche",
+                "nombreSabor": "Arroz con leche",
                 "imagenSabor": "https://i.ibb.co/Jv4HWWk/s-arroz.png"
             },
             "imagen": "https://i.ibb.co/1G2X6vq/b-arroz.png"
@@ -87,7 +103,7 @@
             "nombre": "Atole de Chocolate",
             "precio": 12,
             "sabor": {
-                "nombreSabor": "chocolate",
+                "nombreSabor": "Chocolate",
                 "imagenSabor": "https://i.ibb.co/hFV4P9M/s-chocolate.png"
             },
             "imagen": "https://i.ibb.co/XLRKgTB/b-chocolate.png"
@@ -97,7 +113,7 @@
             "nombre": "Atole de Café",
             "precio": 12,
             "sabor": {
-                "nombreSabor": "café",
+                "nombreSabor": "Café",
                 "imagenSabor": "https://i.ibb.co/Wc13VSy/s-cafe.png"
             },
             "imagen": "https://i.ibb.co/8cHSPtX/b-cafe.png"
@@ -109,7 +125,7 @@
             "nombre": "Tamal Verde",
             "precio": 14,
             "sabor": {
-                "nombreSabor": "verde",
+                "nombreSabor": "Verde",
                 "imagenSabor": "https://i.ibb.co/crTNfY4/s-verde.png"
             },
             "imagen": "https://i.ibb.co/25mSvYm/t-verde.png"
@@ -119,7 +135,7 @@
             "nombre": "Tamal de Mole",
             "precio": 14,
             "sabor": {
-                "nombreSabor": "mole",
+                "nombreSabor": "Mole",
                 "imagenSabor": "https://i.ibb.co/BNfgp20/s-mole.png"
             },
             "imagen": "https://i.ibb.co/ws5NX0x/t-mole.png"
@@ -129,7 +145,7 @@
             "nombre": "Tamal de Rajas",
             "precio": 14,
             "sabor": {
-                "nombreSabor": "rajas",
+                "nombreSabor": "Rajas",
                 "imagenSabor": "https://i.ibb.co/x6vgZZj/s-rajas.png"
             },
             "imagen": "https://i.ibb.co/4PQVbKN/t-rajas.png"
@@ -139,7 +155,7 @@
             "nombre": "Tamal de Piña",
             "precio": 14,
             "sabor": {
-                "nombreSabor": "piña",
+                "nombreSabor": "Piña",
                 "imagenSabor": "https://i.ibb.co/tb4qQm2/s-pina.png"
             },
             "imagen": "https://i.ibb.co/Bsm00W6/t-pina.png"
@@ -149,7 +165,7 @@
             "nombre": "Tamal de Pasas",
             "precio": 14,
             "sabor": {
-                "nombreSabor": "pasas",
+                "nombreSabor": "Pasas",
                 "imagenSabor": "https://i.ibb.co/crjppmH/s-pasas.png"
             },
             "imagen": "https://i.ibb.co/DV88Myx/t-pasas.png"
@@ -159,7 +175,7 @@
             "nombre": "Tamal de Guayaba",
             "precio": 14,
             "sabor": {
-                "nombreSabor": "guayaba",
+                "nombreSabor": "Guayaba",
                 "imagenSabor": "https://i.ibb.co/KFhQmYT/s-guayaba.png"
             },
             "imagen": "https://i.ibb.co/LnvWpBb/t-guayaba.png"

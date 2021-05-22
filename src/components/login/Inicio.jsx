@@ -86,6 +86,7 @@ const Inicio = () => {
                         //global = "/"
                         localStorage.setItem("logueado", true)
                         //this.props.history.push('/home');
+                        window.location.reload()
                     }
                     else {
                         toast({
