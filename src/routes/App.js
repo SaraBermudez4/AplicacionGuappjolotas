@@ -1,5 +1,5 @@
 import React from "react"
-import Carrito from "../containers/Carrito"
+import Carrito from "../containers/carrito/Carrito"
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { ChakraProvider } from "@chakra-ui/react"
 

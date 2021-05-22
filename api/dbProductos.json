@@ -1,11 +1,11 @@
 {
   "cart": [
     {
-      "id": "guajo-0",
       "nombre": "Guajolota de Tamal Verde",
       "precio": 25,
       "imagen": "https://i.ibb.co/f95xBTX/g-verde.png",
-      "cantidad": 2
+      "cantidad": 2,
+      "id": "guajo-0"
     },
     {
       "nombre": "Champurrado",
@@ -181,6 +181,17 @@
       },
       "imagen": "https://i.ibb.co/LnvWpBb/t-guayaba.png",
       "cantidad": 1
+    }
+  ],
+  "categorias": [
+    {
+      "name": "Guajolotas"
+    },
+    {
+      "name": "Bebidas"
+    },
+    {
+      "name": "Tamales"
     }
   ]
 }

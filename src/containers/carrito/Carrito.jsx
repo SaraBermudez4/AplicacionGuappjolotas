@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import HeaderCarrito from '../components/HeaderCarrito'
+import HeaderCarrito from '../../components/carrito/HeaderCarrito'
 // import Inicio from '../components/Inicio'
-import CarritoOpacityA from '../components/CarritoOpacityA'
-import CarritoOpacityM from '../components/CarritoOpacityM'
+import CarritoOpacityA from '../../components/carrito/CarritoOpacityA'
+import CarritoOpacityM from '../../components/carrito/CarritoOpacityM'
 
 // const NoProductos = styled.div`
 

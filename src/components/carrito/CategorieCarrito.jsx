@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap'
 import styled from 'styled-components'
 import ModalCarrito from './ModalCarrito'
-import '../style/style.css'
+import '../../style/carrito/styleCarrito.css'
 
 const DivCart = styled.div`
     display: flex;

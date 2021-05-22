@@ -6,7 +6,7 @@ import {
     Image,
     Text
 } from "@chakra-ui/react"
-import useCounter from '../hooks/useCounter'
+import useCounter from '../../hooks/useCounter'
 import styled from 'styled-components'
 import axios from 'axios'
 
