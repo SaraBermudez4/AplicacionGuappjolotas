@@ -6,7 +6,7 @@ import UserCheck from '../components/login/UserCheck.jsx'
 import Entrada from '../components/login/Entrada.jsx';
 import Home from '../components/home/Home'
 import LoginR from '../components/LoginR';
-import Search from '../components/home/Search.jsx';
+import Search from '../components/search/Search.jsx';
 
 function App() {
 

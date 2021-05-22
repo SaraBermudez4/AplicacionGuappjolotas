@@ -6,8 +6,8 @@ import Search from './components/search/Search.jsx'
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Search/>
+    <App />
+    {/* <Search/> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

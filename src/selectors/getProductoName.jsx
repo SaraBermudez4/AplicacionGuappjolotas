@@ -99,7 +99,7 @@ const getProductosByName = (palabra = '') => {
         const response = await API.get(`http://localhost:3004/guajolotas/`);
 
         //console.log(response);
-        //console.log(response.data);
+        console.log(response.data);
 
         if (palabra === '') {
             return [];
