@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
-import axios from 'axios';
-
+import { Link } from "react-router-dom"
 const Container = styled.div`
        margin: 24px;
 `
@@ -13,6 +12,7 @@ const Titulo = styled.h1`
     font-size: 20px;
     line-height: 24px;
     color: #0D0D0D;
+    text-align: left;
 `
 const ContainerSabor = styled.div`
       margin-top:24px;
@@ -30,77 +30,78 @@ const Carga = styled(Spinner)`
      margin-left:auto;
      margin-right:auto;
 `
-
-export default class Sabores extends Component {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            loading: true,
-            data: undefined,
-            error: null
-        }
-    }
-
-    fetchGuajalotaData = () => {
-        this.setState({
-            loading: true,
-            error: null
-        })
-
-        axios
-            .get("http://localhost:3004/guajolotas")
-            .then(res => {
-                this.setState({
-                    loading: false,
-                    data: res.data
-                })
-            })
-            .catch(res => {
-                this.setState({
-                    loading: false,
-                    error: res.error
-                })
-            })
-
-    }
-
-    componentDidMount() {
-        this.fetchGuajalotaData();
-    }
-
-    render() {
-
-
-        if (this.state.loading === true && !this.state.data) {
-            return(
-              <div>
-            <Carga animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Carga>
-            </div>)
-          }
-      
-          if (this.state.error) {
-            return <h1>No se ha podido cargar la pagina</h1>
-          }
-
+const NoOpaco = (props) => {
+    if (props.productos == "") {
         return (
-            <Container>
-                <Titulo>Sabor</Titulo>
-                <ContainerSabor>
-                    <Row>
-                        {
-                            this.state.data.map(guajolotas => {
-                                return (
-                                    <Col xs={4} mb={5}><button><ImgSabores src={guajolotas.sabor.imagenSabor} alt={guajolotas.sabor.nombreSabor} border="0" /></button></Col>
-                                )
-                            })
-                        }
-                    </Row>
-
-                </ContainerSabor>
-            </Container>
+            <div>
+                <Carga animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Carga>
+            </div>
         )
     }
+    return <ImgSabores src={props.prod.sabor.imagenSabor} alt={props.prod.sabor.nombreSabor} border="0" />
 }
+
+const Opaco = (props) => {
+    if (props.productos == "") {
+        return (
+            <div>
+                <Carga animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Carga>
+            </div>
+        )
+    }
+    return <ImgSabores style={{ opacity: "0.2" }} src={props.prod.sabor.imagenSabor} alt={props.prod.sabor.nombreSabor} border="0" />
+}
+
+const Sabores = (props) => {
+    // useEffect( () => console.log('Refresh'));
+    const [state, setstate] = useState(true)
+    const handleClick = (id) => {
+        setstate(true)
+    }
+
+    if (props.productos == undefined) {
+        return (
+            <div>
+                <Carga animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Carga>
+            </div>
+        )
+    }
+
+
+    return (
+        <Container style={{ textAlign: "center" }}>
+            <Titulo>Sabor</Titulo>
+            <ContainerSabor>
+                <Row>
+                    {
+                        props.productos.map(guajolotas => {
+                            return (
+                                <Col xs={4} mb={5}>
+                                    <Link to={`${guajolotas.id}`}>
+                                        <button >
+                                            {
+                                                (guajolotas.id == props.especifico.id)
+                                                    ?
+                                                    <NoOpaco prod={props.especifico} />
+                                                    :
+                                                    <Opaco prod={guajolotas} />
+                                            }
+                                        </button>
+                                    </Link>
+                                </Col>
+                            )
+                        })
+                    }
+                </Row>
+            </ContainerSabor>
+        </Container>
+    )
+}
+
+export default Sabores

@@ -15,7 +15,7 @@ const CategoriaProductos = (props) => {
                                 localStorage.setItem('productCategorie' , categoria.name)
                                 props.onClick(e, categoria.name)
                             }}>
-                                {categoria.name}
+                                {categoria.section}
                             </Tab>
                         )
                     })}

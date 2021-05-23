@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Checkbox, Grid, GridItem } from '@chakra-ui/react'
+import { Checkbox, Grid, GridItem, Radio, RadioGroup, Stack } from '@chakra-ui/react'
 import styled from 'styled-components';
 import axios from 'axios'
 import { Spinner } from 'react-bootstrap';
@@ -9,7 +9,7 @@ const CajaGuajo = styled(Grid)`
       background-color:white;
       width: 152px !important;
       height: 138px !important;
-      margin:10px;
+      margin:8px;
       `
 
 const GridCheck = styled(GridItem)`
@@ -25,8 +25,7 @@ const GridImg = styled(GridItem)`
 const GridText = styled(GridItem)`
       margin: 0 16px 16px 16px;
       `
-const CheckGuajo = styled(Checkbox)`
-
+const CheckGuajo = styled(Radio)`
       border-color:black;
      `
 
@@ -55,9 +54,12 @@ const GridPP = styled.p`
       color: #FA4A0C;
     `
 const ContenedorGuajo = styled.div`
-       margin:10px;
+       padding:10px;
        display:flex;
        flex-wrap: wrap;
+       background: #F2F2F2;
+       margin-bottom: 27%;
+       justify-content: center;
 `
 const TituloGuajo = styled.h1`
        font-family: Inter;
@@ -71,6 +73,7 @@ const TituloGuajo = styled.h1`
 const ContenedorDescripcion = styled.div`
       margin-bottom:10px;
       width:100%;
+      margin-left: 19px;
 `
 const Descripcion = styled.p`
       font-family: Inter;
@@ -89,18 +92,41 @@ const Carga = styled(Spinner)`
       `
 
 
+const StyledRadioGroup = styled(RadioGroup)`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
+// let catProducto = localStorage.getItem("productCategorie")
+
 export default class Guajolocombo extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             loading: true,
-            data: undefined,
-            error: null
+            dataBebida: [],
+            dataGuajalota: [],
+            error: null,
+            props: props,
+            isChecked: false,
+            comboCheck: []
         }
     }
+    toggleChange = () => {
+        this.setState({
+            isChecked: !this.state.isChecked
+        });
 
-    fetchGuajalotaData = () => {
+    }
+    handleClick = (p) => {
+        console.log(p);
+        // alert("holi")
+        // this.setState({
+        //     comboCheck: p
+        // });
+    }
+    fetchdataBebida = () => {
         this.setState({
             loading: true,
             error: null
@@ -111,7 +137,7 @@ export default class Guajolocombo extends Component {
             .then(res => {
                 this.setState({
                     loading: false,
-                    data: res.data
+                    dataBebida: res.data
                 })
             })
             .catch(res => {
@@ -123,46 +149,143 @@ export default class Guajolocombo extends Component {
 
     }
 
+    fetchdataGuajalota = () => {
+        this.setState({
+            loading: true,
+            error: null
+        })
+
+        axios
+            .get("http://localhost:3004/guajolotas")
+            .then(res => {
+                this.setState({
+                    loading: false,
+                    dataGuajalota: res.data
+                })
+            })
+            .catch(res => {
+                this.setState({
+                    loading: false,
+                    error: res.error
+                })
+            }
+            )
+    }
+
     componentDidMount() {
-        this.fetchGuajalotaData();
+        this.fetchdataBebida()
+        this.fetchdataGuajalota()
     }
 
     render() {
 
-        if (this.state.loading === true && !this.state.data) {
-            return(
-              <div>
-            <Carga animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Carga>
-            </div>)
-          }
-      
-          if (this.state.error) {
+        if (this.state.loading === true && !this.state.dataGuajalota && !this.state.dataBebida) {
+            return (
+                <div>
+                    <Carga animation="border" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </Carga>
+                </div>)
+        }
+
+        if (this.state.error) {
             return <h1>No se ha podido cargar la pagina</h1>
-          }
+        }
+        // console.log(this.state.props);
+        // console.log(this.state.dataBebida);
+        // console.log(this.state.dataGuajalota);
+        // console.log(this.props.modificarCantidad);
 
         return (
+
             <ContenedorGuajo>
-                <ContenedorDescripcion>
-                    <TituloGuajo>Guajolocombo</TituloGuajo>
-                    <Descripcion>Selecciona la bebida que más te guste y disfruta de tu desayuno.</Descripcion>
-                </ContenedorDescripcion>
 
                 {
-                    this.state.data.map(bebidas => {
-                        return (
-                            <div>
-                                <CajaGuajo
-                                    templateRows="repeat(2)"
-                                    templateColumns="repeat(5)">
-                                    <GridImg colSpan={2}><ImagenGuajo src={bebidas.imagen} alt={bebidas.nombre} border="0" /> </GridImg>
-                                    <GridCheck colSpan={2}  ><CheckGuajo value="naruto" colorScheme="green" name="guajolocombo"></CheckGuajo></GridCheck>
-                                    <GridText colSpan={4} ><GridP>{bebidas.nombre}</GridP> <GridPP>+ ${bebidas.precio} MSX</GridPP></GridText>
-                                </CajaGuajo>
-                            </div>
-                        )
-                    })
+
+                    (this.props.especifico === "bebidas")
+                        ?
+                        <>
+                            <ContenedorDescripcion>
+                                <TituloGuajo>Guajolocombo</TituloGuajo>
+                                <Descripcion>Selecciona la guajalota que más te guste y disfruta de tu desayuno.</Descripcion>
+                            </ContenedorDescripcion>
+                            <StyledRadioGroup >
+
+                                {this.state.dataGuajalota.map(p => {
+                                    return (
+                                        <CajaGuajo
+                                            templateRows="repeat(2)"
+                                            templateColumns="repeat(5)"
+                                        >
+                                            <GridImg colSpan={2} >
+                                                <ImagenGuajo src={p.imagen} alt={p.nombre} border="0" />
+
+                                            </GridImg>
+                                            <GridCheck colSpan={2}>
+                                                <button onClick={() => {
+                                                    // console.log(p);
+                                                    this.setState({
+                                                        comboCheck: p
+                                                    });
+                                                    this.props.modificarCantidad("precio", p.precio)
+                                                    this.props.traerArreglo("comboProducto", p)
+                                                }}>
+                                                    <CheckGuajo value={p.id} colorScheme="orange" name="guajolocombo" id={p.id} defaultChecked={this.state.isChecked} onChange={this.toggleChange}>
+                                                    </CheckGuajo>
+
+                                                </button>
+                                            </GridCheck>
+                                            <GridText colSpan={4} >
+                                                <GridP>{p.nombre}
+                                                </GridP>
+                                                <GridPP>+ ${p.precio} MSX</GridPP>
+                                            </GridText>
+                                        </CajaGuajo>
+
+                                    )
+                                })}
+
+                            </StyledRadioGroup>
+                        </>
+                        :
+                        <>
+                            <ContenedorDescripcion>
+                                <TituloGuajo>Guajolocombo</TituloGuajo>
+                                <Descripcion>Selecciona la bebida que más te guste y disfruta de tu desayuno.</Descripcion>
+                            </ContenedorDescripcion>
+                            <StyledRadioGroup >
+                                {this.state.dataBebida.map(p => {
+                                    return (
+                                        <CajaGuajo
+                                            templateRows="repeat(2)"
+                                            templateColumns="repeat(5)">
+                                            <GridImg colSpan={2}>
+                                                <ImagenGuajo src={p.imagen} alt={p.nombre} border="0" />
+                                            </GridImg>
+                                            <GridCheck colSpan={2}>
+                                                <button onClick={() => {
+                                                    // console.log(p);
+                                                    this.setState({
+                                                        comboCheck: p
+                                                    });
+                                                    this.props.modificarCantidad("precio", p.precio)
+                                                    this.props.traerArreglo("comboProducto", p)
+                                                }}>
+                                                    <CheckGuajo value={p.id} colorScheme="orange" name="guajolocombo" id={p.id} >
+                                                    </CheckGuajo>
+                                                </button>
+                                            </GridCheck>
+                                            <GridText colSpan={4} >
+                                                <GridP>{p.nombre}
+                                                </GridP>
+                                                <GridPP>+ ${p.precio} MSX</GridPP>
+                                            </GridText>
+                                        </CajaGuajo>
+
+                                    )
+                                })}
+                            </StyledRadioGroup>
+                        </>
                 }
 
 

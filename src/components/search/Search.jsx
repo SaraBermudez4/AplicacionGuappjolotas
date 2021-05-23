@@ -8,6 +8,7 @@ import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image, Form } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { Box, Grid, Heading, Text } from '@chakra-ui/layout';
+import { Link } from "react-router-dom"
 
 const StyledSearchContainer = styled(Container)`
     background: #F2F2F2;
@@ -89,11 +90,11 @@ const StyledTextPrecio = styled(Text)`
 `
 
 
-const RealizarBusqueda = ({productoFilter}) => {
+const RealizarBusqueda = ({ productoFilter }) => {
     return (
-        <div>
-            {/* <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' />
-            <StyledResultadoOneSearch>Realizar una búsqueda</StyledResultadoOneSearch> */}
+        <div style={{ textAlign: "-webkit-center" }}>
+            <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' />
+            <StyledResultadoOneSearch>Realizar una búsqueda</StyledResultadoOneSearch>
             {/* <StyledBoxProductos key={`${productoFilter.id}`}>
                 <Grid templateColumns="repeat(2, 1fr)" gap={6}>
                     <Box w="100%" h="10" marginTop="-10px">
@@ -111,7 +112,7 @@ const RealizarBusqueda = ({productoFilter}) => {
 
 const NoEncontrado = () => {
     return (
-        <div>
+        <div style={{ textAlign: "-webkit-center" }}>
             <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' />
             <StyledResultadoOneSearch>No hay resultados</StyledResultadoOneSearch>
         </div>
@@ -121,7 +122,7 @@ const NoEncontrado = () => {
 
 const Search = ({ history }) => {
     const [stateSearch, setSearch] = useState(true)
-    console.log(history);
+    // console.log(history);
     const location = useLocation();
 
     const { palabra = '' } = queryString.parse(location.search)
@@ -154,16 +155,17 @@ const Search = ({ history }) => {
                             < StyledSearchInput type='search' style={{ paddingLeft: '35px', paddingRight: '35px', }} placeholder='Sabor de guajolo...' name="searchText" value={searchText} onChange={handleInputChange}
                                 onClick={() => {
                                     setSearch(!stateSearch)
-                                }} /></form>
+                                }} />
+                        </form>
                     </Col>
                     <StyledTextCancelar xs={4}>
-                        <StyledPcancelar>Cancelar</StyledPcancelar>
+                        <Link to="/home"><StyledPcancelar>Cancelar</StyledPcancelar></Link>
                     </StyledTextCancelar>
                 </Row>
                 < StyledRowContainerMainImage>
                     <Col xs={12}>
                         {
-                            stateSearch ? <RealizarBusqueda productoFilter={productoFilter}/> : <NoEncontrado />
+                            stateSearch ? <RealizarBusqueda productoFilter={productoFilter} /> : <NoEncontrado />
                         }
                     </Col>
                 </ StyledRowContainerMainImage>

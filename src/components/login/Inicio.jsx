@@ -28,6 +28,7 @@ const StyledButtom = styled.button`
     border-radius: 40px;
     padding: 12px 24px;
     margin-top: 10px;
+    color: white;
 `
 let users;
 
@@ -141,7 +142,7 @@ const Inicio = () => {
                     <Form.Control type="password" placeholder="Ingrese Contraseña" id='password' style={{ paddingLeft: '35px', paddingRight: '35px' }} />
                 </Form.Group>
             </Form>
-            <StyledButtom className='btn btn-primary' onClick={envioInicio}>Entrar
+            <StyledButtom onClick={envioInicio}>Entrar
                 
             </StyledButtom>
         </StyledFormContainer>

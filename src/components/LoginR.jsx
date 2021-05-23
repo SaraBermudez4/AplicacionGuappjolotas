@@ -5,9 +5,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 const LoginR = ({history}) => {
 
-    const handleLogin = () =>{
-        history.push('/')
-    }
+    // const handleLogin = () =>{
+    //     history.push('/')
+    // }
 
     const [loading, setloading] = useState(true)
     useEffect(() => {

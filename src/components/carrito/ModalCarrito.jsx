@@ -7,7 +7,7 @@ import {
     Text,
     useToast
 } from "@chakra-ui/react"
-import useCounter from '../../hooks/useCounter'
+import useCounter from '../../hooks/useCounter.jsx'
 import styled from 'styled-components'
 import axios from 'axios'
 
@@ -75,15 +75,18 @@ const ModalCarrito = ({ cart, handleClose }) => {
 
     const editarCantidad = async (e) => {
 
+        console.log(e);
+
         const nuevaCantidad = cantidadRef.current.textContent
 
-        if (nuevaCantidad === 0) {
-            const url =  `http://localhost:3004/cart/${cart.id}`
+        if (parseInt(nuevaCantidad) === 0) {
+
+            const url = `http://localhost:3004/cart/${cart.id}`
 
             try {
 
                 const resultado = await axios.delete(url)
-
+                console.log(cart);
                 if (resultado.status === 200) {
                     toast({
                         title: "Eliminado",
@@ -92,11 +95,12 @@ const ModalCarrito = ({ cart, handleClose }) => {
                         duration: 9000,
                         isClosable: true,
                     })
+
+                    setTimeout(() => {
+                        window.location.reload()
+                    }, 1000);
                 }
 
-                setTimeout(() => {
-                    window.location.reload()
-                }, 1000);
             } catch {
                 toast({
                     title: "Problemas",
@@ -114,7 +118,7 @@ const ModalCarrito = ({ cart, handleClose }) => {
                 cantidad: parseInt(nuevaCantidad)
             }
 
-            const url =  `http://localhost:3004/cart/${cart.id}`
+            const url = `http://localhost:3004/cart/${cart.id}`
 
             try {
                 const resultado = await axios.put(url, actualizarCantidad)
@@ -143,13 +147,13 @@ const ModalCarrito = ({ cart, handleClose }) => {
             }
         }
     }
-    
+
     return (
         <div className="holaa3">
             <HeaderModal>
-                <Image src={cart.imagen} alt={cart.nombre} />
+                <Image boxSize="80px" src={cart.imagen} alt={cart.nombre} />
                 <TextModal1>{cart.nombre}</TextModal1>
-                <TextModal2>${cart.precio * cart.cantidad} MXN</TextModal2>
+                <TextModal2>${cart.precio * state} MXN</TextModal2>
             </HeaderModal>
             <BodyModal>
                 {
@@ -170,7 +174,7 @@ const ModalCarrito = ({ cart, handleClose }) => {
                 {
                     (state === cart.cantidad)
                         ?
-                        <ButtonModal3 onClick={handleClose} style={{opacity: '0.5'}}>
+                        <ButtonModal3 onClick={handleClose} style={{ opacity: '0.5' }}>
                             Actualizar
                         </ButtonModal3>
                         :

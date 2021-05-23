@@ -8,9 +8,9 @@ import Home from '../components/home/Home'
 import LoginR from '../components/LoginR';
 import Search from '../components/search/Search.jsx';
 import Descripcion from '../containers/descripcion/Descripcion.jsx';
+import Carrito from '../containers/carrito/Carrito.jsx';
 
 function App() {
-
   const loggedIn = localStorage.getItem("logueado")
   console.log(loggedIn);
   // const isAutenticated = () => {
@@ -50,8 +50,8 @@ function App() {
           <Route exact path='/search' component={Search} />
           {/* <Route exact path="/logout" component={Logout} /> */}
           <Route exact path="/home" component={Home} />
-          <Route exact path = "/detalle" component={Descripcion}/>
-          
+          <Route exact path = "/:section/:prodId" component={Descripcion}/>
+          <Route path="/cart" component={Carrito} />
         </ChakraProvider>
       </Switch>
     </BrowserRouter>
@@ -59,5 +59,4 @@ function App() {
   );
 }
 //<Route  path="/" component={Home} <Route exact path='/login' component={LoginR} />/>
-//<Route path="/cart" component={Carrito} />
 export default App;

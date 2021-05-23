@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
 import { Row, Image, Col } from 'react-bootstrap'
 
 const RowBoots = styled(Row)`
@@ -24,7 +25,7 @@ const Header = () => {
         <>
             <RowBoots className="container fluid">
                 <Col xs={2}>
-                    <ArrowVector src="https://i.ibb.co/XCfZxLf/vector-chevron-leftx4.png" alt="Vector Arrow" />
+                    <Link to = "/home"><ArrowVector src="https://i.ibb.co/XCfZxLf/vector-chevron-leftx4.png" alt="Vector Arrow" /></Link>
                 </Col>
                 <Col xs={10}>
                     <TextMenu>Carrito</TextMenu>

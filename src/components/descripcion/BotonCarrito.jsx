@@ -1,51 +1,97 @@
-import React, { Component } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import React, { useRef } from 'react'
 import styled from 'styled-components'
-
+import axios from "axios"
+import { toast, useToast } from '@chakra-ui/toast'
+import { Button } from '@chakra-ui/button'
 const NavFixed = styled.div`
+  position: fixed;
   bottom: 0;
   left: 0;
   padding: 0;
   margin: 0;
   width: 100%;
   height: 101px;
+  background-color: #F2F2F2;
   text-align: center;
+  opacity: 1;
 `
 
-const NavButton = styled.button`
-    margin-top: 17px;
-    width: 312px;
-    height: 69px;
-    text-align: center;
-    border-radius: 40px;
-    background-color: #FA4A0C;
-    border: none;
+const NavButton = styled(Button)`
+    margin-top: 17px !important;
+    width: 312px !important;
+    height: 69px !important;
+    text-align: center !important;
+    border-radius: 40px !important;
+    background-color: #FA4A0C !important;
+    border: none !important;
+    font-family: Inter !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    line-height: 21px !important;
+    color: #F6F6F9 !important;
     
 `
-const ContenedorTexto = styled.p`
-     font-family: Inter;
-     font-style: normal;
-     font-weight: 600;
-     font-size: 17px;
-     line-height: 21px;
-     text-align: right;
-     color: #F6F6F9;
-     text-align:center;
-`
+
+const BotonCarrito = (props) => {
+    const toast = useToast()
+    const agregarCarrito = async (e) => {
+        e.preventDefault()
+
+        if (props.cant == 0) {
+            alert("No hay productos registrados")
+        } else {
+            const nuevoProducto =
+            {
+                nombre: props.especifico.nombre,
+                precio: props.especifico.precio,
+                imagen: props.especifico.imagen,
+                cantidad: props.cant,
+                id: props.especifico.id
+            }
+
+            const comboPro =
+            {
+                nombre: props.comboProducto.nombre,
+                precio: props.comboProducto.precio,
+                imagen: props.comboProducto.imagen,
+                cantidad: 1,
+                id: props.comboProducto.id
+            }
 
 
-export default class BotonCarrito extends Component {
-    render() {
-        return (
-
-            <NavFixed>
-                <NavButton>
-                    <Row>
-                  <Col><ContenedorTexto>Agregar 2 al Carrito $150.000</ContenedorTexto></Col> 
-                   </Row>
-                </NavButton>
-            </NavFixed>
-
-        )
+            const url = "http://localhost:3004/cart"
+            try {
+                const resultado = await axios.post(url, nuevoProducto)
+                const resultado2 = await axios.post(url, comboPro)
+                if (resultado.status === 200 && resultado2.status === 200) {
+                    toast({
+                        title: "Agregado",
+                        description: "Su producto se agregó correctamente",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
+            } catch {
+                toast({
+                    title: "Problemas",
+                    description: "No se pudo agregar su producto",
+                    status: "warning",
+                    duration: 9000,
+                    isClosable: true,
+                })
+            }
+        }
     }
+
+    return (
+        <div>
+            <NavFixed>
+                <NavButton onClick={agregarCarrito}>Agregar {props.cant} al carrito ${props.cant * props.especifico.precio + props.precio}.00</NavButton>
+            </NavFixed>
+        </div>
+    )
 }
+
+export default BotonCarrito

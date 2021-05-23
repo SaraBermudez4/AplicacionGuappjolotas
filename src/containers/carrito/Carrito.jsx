@@ -67,7 +67,7 @@ class Carrito extends Component {
         }
         
         return (
-            <div style={{fontFamily: 'Inter'}}>
+            <div style={{fontFamily: 'Inter', marginBottom: '130px'}}>
                 <HeaderCarrito />
                 {
                     (this.state.data.length < 1)

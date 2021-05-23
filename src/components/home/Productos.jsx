@@ -1,7 +1,9 @@
 import React from 'react'
-import { Box, Grid, Heading, Link, Stack, StackDivider, Text, VStack } from '@chakra-ui/layout';
+import { Box, Grid, Heading, Stack, StackDivider, Text, VStack } from '@chakra-ui/layout';
 import styled from 'styled-components'
 import { Image } from '@chakra-ui/image';
+import { Link } from "react-router-dom"
+import { Spinner } from 'react-bootstrap';
 
 const StyledBoxProductos = styled(Box)`
     border-radius: 20px;
@@ -21,24 +23,40 @@ const StyledImageProducto = styled(Image)`
 `
 
 const StyledHeadign = styled(Heading)`
-    font-family: Inter;
+    font-family: Inter !important;
     font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 21px;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    line-height: 21px !important;
     color: #0D0D0D;
 `
 
 const StyledTextPrecio = styled(Text)`
-    font-family: Inter;
+    font-family: Inter !important;
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 17px !important;
     color: #FA4A0C;
 `
 
+const Carga = styled(Spinner)`
+     display:block;
+     margin-left:auto;
+     margin-right:auto;
+`
+
 const Productos = (props) => {
+    if (props.productos == "") {
+        return (
+            <div>
+                <Carga animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Carga>
+            </div>
+        )
+    }
+
     return (
         <>
             <VStack

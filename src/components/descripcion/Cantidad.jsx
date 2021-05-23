@@ -1,6 +1,6 @@
 import React from 'react'
 import { useCounter } from '../../hooks/useCounter'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import styled from 'styled-components'
 
 const Contenedor = styled(Container)`
@@ -34,29 +34,30 @@ const Cantidad = styled.h2`
         margin: 0 32px 0 32px;
         `
 
-function CounterDos() {
+function CounterDos({ modificarCantidad }) {
+        
+        const { state, incremento, decremento } = useCounter(0, modificarCantidad)
 
-    const { state, incremento, decremento } = useCounter(0)
-    return (
-        <div>
+        return (
+                <div>
+                        <Contenedor>
+                                {
+                                        (state == 0)
+                                                ?
+                                                <img src="https://i.ibb.co/bQtPKQw/minus-circle-gray.png" alt="minus-circle-gray" border="0" />
+                                                :
+                                                <BotonesCantidad onClick={() => decremento()}>
+                                                        <img src="https://i.ibb.co/wRnV6YJ/minus-circle.png" alt="minus-circle" border="0" />
+                                                </BotonesCantidad>
+                                }
 
-            <Contenedor>
-              
-
-                    {
-                        (state == 0)
-                            ?
-                            <img src="https://i.ibb.co/bQtPKQw/minus-circle-gray.png" alt="minus-circle-gray" border="0" />
-                            :
-                            <BotonesCantidad onClick={() => decremento()}><img src="https://i.ibb.co/wRnV6YJ/minus-circle.png" alt="minus-circle" border="0" /> </BotonesCantidad>
-                    }
-
-                    <Cantidad>  {state} </Cantidad>
-                    <BotonesCantidad onClick={() => incremento()}><img src="https://i.ibb.co/gWVpXrD/plus-circle.png" alt="plus-circle" border="0" /></BotonesCantidad>
-               
-            </Contenedor>
-        </div>
-    )
+                                <Cantidad>  {state} </Cantidad>
+                                <BotonesCantidad onClick={() => incremento()}>
+                                        <img src="https://i.ibb.co/gWVpXrD/plus-circle.png" alt="plus-circle" border="0" />
+                                </BotonesCantidad>
+                        </Contenedor>
+                </div>
+        )
 }
 
 export default CounterDos

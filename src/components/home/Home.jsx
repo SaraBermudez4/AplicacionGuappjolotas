@@ -6,15 +6,14 @@ import axios from 'axios'
 import { Center } from '@chakra-ui/layout';
 import { Spinner } from '@chakra-ui/spinner';
 
-localStorage.setItem('productCategorie', "Guajolotas")
-
 const StyledHome = styled.header`
     padding: 24px 24px 24px 24px;
     background-color: #F2F2F2;
 `
+localStorage.setItem('productCategorie', "guajolotas")
 
 class Home extends Component {
-
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -88,7 +87,7 @@ class Home extends Component {
     }
 
     render() {
-
+        
         if (this.state.loading && !this.state.data) {
             return (
                 <Center>
