@@ -75,18 +75,15 @@ const ModalCarrito = ({ cart, handleClose }) => {
 
     const editarCantidad = async (e) => {
 
-        console.log(e);
-
         const nuevaCantidad = cantidadRef.current.textContent
 
         if (parseInt(nuevaCantidad) === 0) {
 
-            const url = `http://localhost:3004/cart/${cart.id}`
+            const url = `https://api-guajolotas.herokuapp.com/cart/${cart.id}`
 
             try {
 
                 const resultado = await axios.delete(url)
-                console.log(cart);
                 if (resultado.status === 200) {
                     toast({
                         title: "Eliminado",
@@ -118,7 +115,7 @@ const ModalCarrito = ({ cart, handleClose }) => {
                 cantidad: parseInt(nuevaCantidad)
             }
 
-            const url = `http://localhost:3004/cart/${cart.id}`
+            const url = `https://api-guajolotas.herokuapp.com/cart/${cart.id}`
 
             try {
                 const resultado = await axios.put(url, actualizarCantidad)

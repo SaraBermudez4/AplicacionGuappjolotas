@@ -25,9 +25,10 @@ export default class Descripcion extends Component {
             data: undefined,
             error: null,
             dataSlider: [],
-            cantidad:0,
-            precio:0,
-            comboProducto: []
+            cantidad: 0,
+            precio: 0,
+            comboProducto: [],
+            dataCart: []
         }
     }
     fetchGuajalotaData = () => {
@@ -37,8 +38,7 @@ export default class Descripcion extends Component {
         })
 
         axios
-            // .get("http://localhost:3004/guajolotas")
-            .get(`http://localhost:3004/${this.props.match.params.section}/${this.props.match.params.prodId}`)
+            .get(`https://api-guajolotas.herokuapp.com/${this.props.match.params.section}/${this.props.match.params.prodId}`)
             .then(res => {
                 this.setState({
                     loading: false,
@@ -51,7 +51,6 @@ export default class Descripcion extends Component {
                     error: res.error
                 })
             })
-
     }
 
     fetchDatosSlider = () => {
@@ -61,7 +60,7 @@ export default class Descripcion extends Component {
         })
 
         axios
-            .get(`http://localhost:3004/${this.props.match.params.section}`)
+            .get(`https://api-guajolotas.herokuapp.com/${this.props.match.params.section}`)
             .then(res => {
                 this.setState({
                     loading: false,
@@ -77,25 +76,44 @@ export default class Descripcion extends Component {
 
     }
 
+    fetchDatosCart = () => {
+        this.setState({
+            loading: true,
+            error: null
+        })
 
+        axios
+            .get(`https://api-guajolotas.herokuapp.com/cart`)
+            .then(res => {
+                this.setState({
+                    loading: false,
+                    dataCart: res.data
+                })
+            })
+            .catch(res => {
+                this.setState({
+                    loading: false,
+                    error: res.error
+                })
+            })
+
+    }
     componentDidMount() {
         this.fetchGuajalotaData();
         this.fetchDatosSlider();
+        this.fetchDatosCart();
     }
 
     modificarCantidad = (campo, valor) => {
-        this.setState({[campo] : parseFloat(valor)})
-        // console.log(valor);
+        this.setState({ [campo]: parseFloat(valor) })
     }
 
     traerArreglo = (campo, valor) => {
-        this.setState({[campo] : valor})
-        // console.log(valor);
+        this.setState({ [campo]: valor })
     }
-    
+
     render() {
-        // console.log(this.state.dataSlider);
-        if (this.state.loading === true && !this.state.data) {
+        if (this.state.loading === true && this.state.data === undefined) {
             return (
                 <div>
                     <Carga animation="border" role="status">
@@ -107,15 +125,15 @@ export default class Descripcion extends Component {
         if (this.state.error) {
             return <h1>No se ha podido cargar la pagina</h1>
         }
-        return (   
+        return (
             <div style={{ position: "absolute", background: " #F2F2F2" }}>
                 <ChakraProvider>
                     <Header />
-                    <Productos productos = {this.state.dataSlider} especifico={this.state.data}/>
-                    <Cantidad  modificarCantidad = {this.modificarCantidad}/>
-                    <Sabores productos = {this.state.dataSlider} especifico={this.state.data}/>
-                    <Guajolocombo especifico={this.props.match.params.section} modificarCantidad = {this.modificarCantidad} traerArreglo={this.traerArreglo}/>
-                    <BotonCarrito cant = {this.state.cantidad} especifico={this.state.data} precio={this.state.precio} comboProducto={this.state.comboProducto}/>
+                    <Productos productos={this.state.dataSlider} especifico={this.state.data} />
+                    <Cantidad modificarCantidad={this.modificarCantidad} />
+                    <Sabores productos={this.state.dataSlider} especifico={this.state.data} />
+                    <Guajolocombo especifico={this.props.match.params.section} modificarCantidad={this.modificarCantidad} traerArreglo={this.traerArreglo} />
+                    <BotonCarrito cant={this.state.cantidad} especifico={this.state.data} precio={this.state.precio} comboProducto={this.state.comboProducto} dataCart={this.state.dataCart} />
                 </ChakraProvider>
             </div>
         )

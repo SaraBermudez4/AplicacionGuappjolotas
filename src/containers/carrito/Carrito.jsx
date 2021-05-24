@@ -17,7 +17,6 @@ class Carrito extends Component {
         }
     }
 
-
     fetchCarrito = () => {
         this.setState({
             loading: true,
@@ -25,14 +24,14 @@ class Carrito extends Component {
         })
 
         axios
-            .get(`http://localhost:3004/cart`)
+            .get(`https://api-guajolotas.herokuapp.com/cart`)
             .then(res => {
                 this.setState({
                     loading: false,
                     data: res.data
                 })
             })
-            .catch( err => {
+            .catch(err => {
                 this.setState({
                     loading: false,
                     error: err
@@ -50,37 +49,36 @@ class Carrito extends Component {
         }
     }
 
-    handleClickSelection =(e, section) => {
+    handleClickSelection = (e, section) => {
         e.preventDefault()
         this.setState({
             categorie: section
         })
     }
-    
+
     render() {
         if (this.state.loading === true && !this.state.data) {
-                return <h1>Se a cargado</h1>
+            return <h1>Se a cargado</h1>
         }
 
         if (this.state.error) {
             return <h1>No se ha podido cargar la pagina</h1>
         }
-        
+
         return (
-            <div style={{fontFamily: 'Inter', marginBottom: '130px'}}>
+            <div style={{ fontFamily: 'Inter', marginBottom: '130px', position: 'absolute', width: '100%', backgroundColor: '#f2f2f2' }}>
                 <HeaderCarrito />
                 {
                     (this.state.data.length < 1)
-                    ? 
-                    <>
-                        <CarritoOpacityM />
-                    </>
-                    :
-                    <>
-                        <CarritoOpacityA section="cart" categories={this.state.data} />
-                    </>
+                        ?
+                        <>
+                            <CarritoOpacityM />
+                        </>
+                        :
+                        <>
+                            <CarritoOpacityA section="cart" categories={this.state.data} />
+                        </>
                 }
-
             </div>
         )
     }

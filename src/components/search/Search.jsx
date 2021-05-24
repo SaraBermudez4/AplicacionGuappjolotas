@@ -4,10 +4,7 @@ import queryString from 'query-string';
 import getProductoName from "../../selectors/getProductoName.jsx";
 import useForm from '../../hooks/useForm.jsx';
 import styled from 'styled-components';
-import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image, Form } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser, faLock, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { Box, Grid, Heading, Text } from '@chakra-ui/layout';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom"
 
 const StyledSearchContainer = styled(Container)`
@@ -52,48 +49,12 @@ const StyledResultadoOneSearch = styled.p`
     font-size: 17px;
     font-weight: bold;
     line-height: 20px;
-
 `
-const StyledBoxProductos = styled(Box)`
-    border-radius: 20px;
-    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
-    background :#ffffff;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px;
-    width: 100%;
-    height: 112px;
-`
-
-const StyledImageProducto = styled(Image)`
-    width : 80px;
-    height : auto;
-
-`
-
-const StyledHeadign = styled(Heading)`
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 21px;
-    color: #0D0D0D;
-`
-
-const StyledTextPrecio = styled(Text)`
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-    color: #FA4A0C;
-`
-
 
 const RealizarBusqueda = ({ productoFilter }) => {
     return (
         <div style={{ textAlign: "-webkit-center" }}>
-            <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' />
+            <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' alt="Icono de busqueda" />
             <StyledResultadoOneSearch>Realizar una búsqueda</StyledResultadoOneSearch>
             {/* <StyledBoxProductos key={`${productoFilter.id}`}>
                 <Grid templateColumns="repeat(2, 1fr)" gap={6}>
@@ -113,16 +74,14 @@ const RealizarBusqueda = ({ productoFilter }) => {
 const NoEncontrado = () => {
     return (
         <div style={{ textAlign: "-webkit-center" }}>
-            <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' />
+            <img src='https://i.ibb.co/CwB3fBC/vector-feather-search.png' alt="Icono de busqueda" />
             <StyledResultadoOneSearch>No hay resultados</StyledResultadoOneSearch>
         </div>
     )
 }
 
-
 const Search = ({ history }) => {
     const [stateSearch, setSearch] = useState(true)
-    // console.log(history);
     const location = useLocation();
 
     const { palabra = '' } = queryString.parse(location.search)
@@ -137,12 +96,7 @@ const Search = ({ history }) => {
 
     const handleSearch = (e) => {
         e.preventDefault()
-
         history.push(`?palabra=${searchText}`)
-        console.log(productoFilter)
-        console.log(palabra)
-
-
     }
 
     return (
@@ -150,7 +104,7 @@ const Search = ({ history }) => {
             <StyledSearchContainer fluid>
                 <Row>
                     <Col xs={8} style={{ position: 'relative', margin: '0px', marginTop: '44px' }}>
-                        <img src='https://i.ibb.co/ssJCP66/vector-search.png' style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '20px', marginLeft: '25px', color: 'black', bottom: '1px', }} />
+                        <img src='https://i.ibb.co/ssJCP66/vector-search.png' style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '20px', marginLeft: '25px', color: 'black', bottom: '1px', }} alt="Icono de busqueda" />
                         <form onSubmit={handleSearch}>
                             < StyledSearchInput type='search' style={{ paddingLeft: '35px', paddingRight: '35px', }} placeholder='Sabor de guajolo...' name="searchText" value={searchText} onChange={handleInputChange}
                                 onClick={() => {
@@ -215,10 +169,7 @@ const Search = ({ history }) => {
 
                 // ))
             }
-
             {/* </div> */}
-
-
         </React.Fragment >
     )
 }

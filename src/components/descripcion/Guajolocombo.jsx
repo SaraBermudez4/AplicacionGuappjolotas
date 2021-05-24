@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Checkbox, Grid, GridItem, Radio, RadioGroup, Stack } from '@chakra-ui/react'
+import { Grid, GridItem, Radio, RadioGroup } from '@chakra-ui/react'
 import styled from 'styled-components';
 import axios from 'axios'
 import { Spinner } from 'react-bootstrap';
@@ -120,7 +120,6 @@ export default class Guajolocombo extends Component {
 
     }
     handleClick = (p) => {
-        console.log(p);
         // alert("holi")
         // this.setState({
         //     comboCheck: p
@@ -133,7 +132,7 @@ export default class Guajolocombo extends Component {
         })
 
         axios
-            .get("http://localhost:3004/bebidas")
+            .get("https://api-guajolotas.herokuapp.com/bebidas")
             .then(res => {
                 this.setState({
                     loading: false,
@@ -146,7 +145,6 @@ export default class Guajolocombo extends Component {
                     error: res.error
                 })
             })
-
     }
 
     fetchdataGuajalota = () => {
@@ -156,7 +154,7 @@ export default class Guajolocombo extends Component {
         })
 
         axios
-            .get("http://localhost:3004/guajolotas")
+            .get("https://api-guajolotas.herokuapp.com/guajolotas")
             .then(res => {
                 this.setState({
                     loading: false,
@@ -191,10 +189,6 @@ export default class Guajolocombo extends Component {
         if (this.state.error) {
             return <h1>No se ha podido cargar la pagina</h1>
         }
-        // console.log(this.state.props);
-        // console.log(this.state.dataBebida);
-        // console.log(this.state.dataGuajalota);
-        // console.log(this.props.modificarCantidad);
 
         return (
 
@@ -223,7 +217,6 @@ export default class Guajolocombo extends Component {
                                             </GridImg>
                                             <GridCheck colSpan={2}>
                                                 <button onClick={() => {
-                                                    // console.log(p);
                                                     this.setState({
                                                         comboCheck: p
                                                     });
@@ -241,7 +234,6 @@ export default class Guajolocombo extends Component {
                                                 <GridPP>+ ${p.precio} MSX</GridPP>
                                             </GridText>
                                         </CajaGuajo>
-
                                     )
                                 })}
 
@@ -264,7 +256,6 @@ export default class Guajolocombo extends Component {
                                             </GridImg>
                                             <GridCheck colSpan={2}>
                                                 <button onClick={() => {
-                                                    // console.log(p);
                                                     this.setState({
                                                         comboCheck: p
                                                     });
@@ -281,15 +272,11 @@ export default class Guajolocombo extends Component {
                                                 <GridPP>+ ${p.precio} MSX</GridPP>
                                             </GridText>
                                         </CajaGuajo>
-
                                     )
                                 })}
                             </StyledRadioGroup>
                         </>
                 }
-
-
-
             </ContenedorGuajo>
         )
     }

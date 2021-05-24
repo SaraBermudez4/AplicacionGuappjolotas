@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap'
 import styled from 'styled-components';
-import  '../../styles/Styles.css'
+import '../../styles/Styles.css'
 
 const ImagenCarousel = styled.img`
          display:block;
@@ -34,28 +34,23 @@ const Precio = styled.p`
 
 const Productos = (props) => {
 
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [input])
+  let posicion = parseInt((props.especifico.id[props.especifico.id.length - 1]))
 
   return (
     <div>
-      <Carousel interval={null}>
-          {
-            props.productos.map(guajolotas => {
-              return (
-                <Carousel.Item key={guajolotas.sabor.nombreSabor}>
-                  <ImagenCarousel src={guajolotas.imagen} alt={guajolotas.nombre} border="0" />
-                  <Descripcion>{guajolotas.nombre}</Descripcion>
-                  <Precio>${guajolotas.precio} MXN</Precio>
-                </Carousel.Item>
-              )
-            })
-          }
-        </Carousel>
+      <Carousel interval={null} activeIndex={posicion}>
+        {
+          props.productos.map(guajolotas => {
+            return (
+              <Carousel.Item key={guajolotas.sabor.nombreSabor} className={guajolotas.id} id={guajolotas.id}>
+                <ImagenCarousel src={guajolotas.imagen} alt={guajolotas.nombre} border="0" />
+                <Descripcion>{guajolotas.nombre}</Descripcion>
+                <Precio>${guajolotas.precio} MXN</Precio>
+              </Carousel.Item>
+            )
+          })
+        }
+      </Carousel>
     </div>
   )
 }

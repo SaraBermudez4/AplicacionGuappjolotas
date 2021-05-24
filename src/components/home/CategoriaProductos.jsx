@@ -7,14 +7,14 @@ const CategoriaProductos = (props) => {
         <ChakraProvider>
             <Tabs isFitted variant="enclosed" style={{ marginTop: "40px" }} color="#9A9A9D">
                 <TabList borderBottom="none">
-                {props.categorias.map(categoria => {
+                    {props.categorias.map(categoria => {
                         return (
-                            <Tab _selected={{ color: "#FA4A0C", borderBottomColor: "#FA4A0C" }} 
-                            key={`${props.section}-${categoria.name}`} 
-                            onClick={(e)=> {
-                                localStorage.setItem('productCategorie' , categoria.name)
-                                props.onClick(e, categoria.name)
-                            }}>
+                            <Tab _selected={{ color: "#FA4A0C", borderBottomColor: "#FA4A0C" }}
+                                key={`${props.section}-${categoria.name}`}
+                                onClick={(e) => {
+                                    localStorage.setItem('productCategorie', categoria.name)
+                                    props.onClick(e, categoria.name)
+                                }}>
                                 {categoria.section}
                             </Tab>
                         )
@@ -22,13 +22,13 @@ const CategoriaProductos = (props) => {
                 </TabList>
                 <TabPanels>
                     <TabPanel paddingLeft="0" paddingRight="0">
-                        <Productos section={props.section} productos={props.productos}/>
+                        <Productos section={props.section} productos={props.productos} />
                     </TabPanel>
                     <TabPanel paddingLeft="0" paddingRight="0">
-                        <Productos section={props.section} productos={props.productos}/>
+                        <Productos section={props.section} productos={props.productos} />
                     </TabPanel>
                     <TabPanel paddingLeft="0" paddingRight="0">
-                        <Productos section={props.section} productos={props.productos}/>
+                        <Productos section={props.section} productos={props.productos} />
                     </TabPanel>
                 </TabPanels>
             </Tabs>

@@ -3,11 +3,7 @@ import UserCheck from '../components/login/UserCheck.jsx'
 import Entrada from '../components/login/Entrada.jsx';
 import { ChakraProvider } from '@chakra-ui/react';
 
-const LoginR = ({history}) => {
-
-    // const handleLogin = () =>{
-    //     history.push('/')
-    // }
+const LoginR = ({ history }) => {
 
     const [loading, setloading] = useState(true)
     useEffect(() => {
@@ -24,14 +20,6 @@ const LoginR = ({history}) => {
                     <ChakraProvider>
                         <UserCheck />
                     </ChakraProvider>
-                // {/* <BrowserRouter>
-                //   <Switch>
-                //     <ChakraProvider>
-                //       <Route path='/' component={Login} />
-                //      <Route exact path="/" component={Home} />
-                //     </ChakraProvider>
-                //   </Switch>
-                // </BrowserRouter> */}
             }
         </React.Fragment>
     )

@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Inicio from './Inicio.jsx'
 import Registro from './Registro.jsx'
 import styled from 'styled-components';
 import { Row, Col } from 'react-bootstrap';
-
-
-
 
 const StyledMainContainer = styled.div`
     height: 100vh;
@@ -54,16 +51,16 @@ const UserCheck = () => {
 
     return (
         <StyledMainContainer>
-            <img src='https://i.ibb.co/xLYZydk/logo.png' style = {{marginBottom: '10px'}}/>
+            <img src='https://i.ibb.co/xLYZydk/logo.png' style={{ marginBottom: '10px' }} alt="Imagen del logo" />
             {
                 verHijo ? <Inicio /> : <Registro />
             }
 
-            <Row style = {{marginTop: '25px', textAlign: 'center'}}>
+            <Row style={{ marginTop: '25px', textAlign: 'center' }}>
                 {
-                    verHijo ?  <StyledCheckRef xs={6}>No tengo una cuenta</StyledCheckRef> : <StyledRegistroCheck xs={6}> Ya tengo una cuenta</StyledRegistroCheck>
+                    verHijo ? <StyledCheckRef xs={6}>No tengo una cuenta</StyledCheckRef> : <StyledRegistroCheck xs={6}> Ya tengo una cuenta</StyledRegistroCheck>
                 }
-               
+
                 <StyledColButtomContainer xs={6}>
                     < StyledButtom onClick={() => {
                         setVerHijo(!verHijo);

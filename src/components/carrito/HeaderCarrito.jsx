@@ -25,7 +25,7 @@ const Header = () => {
         <>
             <RowBoots className="container fluid">
                 <Col xs={2}>
-                    <Link to = "/home"><ArrowVector src="https://i.ibb.co/XCfZxLf/vector-chevron-leftx4.png" alt="Vector Arrow" /></Link>
+                    <Link to="/home"><ArrowVector src="https://i.ibb.co/XCfZxLf/vector-chevron-leftx4.png" alt="Vector Arrow" /></Link>
                 </Col>
                 <Col xs={10}>
                     <TextMenu>Carrito</TextMenu>

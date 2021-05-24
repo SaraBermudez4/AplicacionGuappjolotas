@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Link } from "react-router-dom"
@@ -30,40 +30,11 @@ const Carga = styled(Spinner)`
      margin-left:auto;
      margin-right:auto;
 `
-const NoOpaco = (props) => {
-    if (props.productos == "") {
-        return (
-            <div>
-                <Carga animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Carga>
-            </div>
-        )
-    }
-    return <ImgSabores src={props.prod.sabor.imagenSabor} alt={props.prod.sabor.nombreSabor} border="0" />
-}
-
-const Opaco = (props) => {
-    if (props.productos == "") {
-        return (
-            <div>
-                <Carga animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Carga>
-            </div>
-        )
-    }
-    return <ImgSabores style={{ opacity: "0.2" }} src={props.prod.sabor.imagenSabor} alt={props.prod.sabor.nombreSabor} border="0" />
-}
 
 const Sabores = (props) => {
-    // useEffect( () => console.log('Refresh'));
-    const [state, setstate] = useState(true)
-    const handleClick = (id) => {
-        setstate(true)
-    }
 
-    if (props.productos == undefined) {
+
+    if (props.productos === undefined) {
         return (
             <div>
                 <Carga animation="border" role="status">
@@ -72,8 +43,6 @@ const Sabores = (props) => {
             </div>
         )
     }
-
-
     return (
         <Container style={{ textAlign: "center" }}>
             <Titulo>Sabor</Titulo>
@@ -84,13 +53,17 @@ const Sabores = (props) => {
                             return (
                                 <Col xs={4} mb={5}>
                                     <Link to={`${guajolotas.id}`}>
-                                        <button >
+                                        <button onClick={() => {
+                                            setTimeout(() => {
+                                                window.location.reload()
+                                            }, 1);
+                                        }}>
                                             {
-                                                (guajolotas.id == props.especifico.id)
+                                                (guajolotas.id === props.especifico.id)
                                                     ?
-                                                    <NoOpaco prod={props.especifico} />
+                                                    <ImgSabores src={guajolotas.sabor.imagenSabor} alt={guajolotas.sabor.nombreSabor} border="0" />
                                                     :
-                                                    <Opaco prod={guajolotas} />
+                                                    <ImgSabores style={{ opacity: "0.2" }} src={guajolotas.sabor.imagenSabor} alt={guajolotas.sabor.nombreSabor} border="0" />
                                             }
                                         </button>
                                     </Link>

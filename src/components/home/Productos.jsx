@@ -19,7 +19,6 @@ const StyledBoxProductos = styled(Box)`
 const StyledImageProducto = styled(Image)`
     width : 80px;
     height : auto;
-
 `
 
 const StyledHeadign = styled(Heading)`
@@ -47,7 +46,7 @@ const Carga = styled(Spinner)`
 `
 
 const Productos = (props) => {
-    if (props.productos == "") {
+    if (props.productos === "") {
         return (
             <div>
                 <Carga animation="border" role="status">

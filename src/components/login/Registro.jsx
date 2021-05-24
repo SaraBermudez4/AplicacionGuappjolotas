@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components';
-import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useToast } from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock, faEnvelope, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-
-
 
 // Estilos 
 const StyledFormContainer = styled(Form)`
@@ -23,12 +21,7 @@ const StyledButtomSend = styled.button`
     color: #F6F6F9;
 `
 
-
-// import { faLock } from '@fortawesome/free-solid-svg-icons';
-
 let usuario = [];
-// let c;
-// const usuarios = JSON.parse(localStorage.getItem("usuarios"))
 
 const Registro = () => {
     const form_ref = useRef();
@@ -39,7 +32,6 @@ const Registro = () => {
             contraseña: "",
             correo: "",
             direccion: ""
-
         }
     )
     const cambiarEstado = (e) => {
@@ -51,61 +43,41 @@ const Registro = () => {
 
     const envioRegistro = (e) => {
         e.preventDefault();
-        // let name = document.getElementById('userR').value;
-        // c = usuarios.filter((u) => u.nombreUsuario == name)
-        // console.log(c);
-        // // console.log(c[0].nombreUsuario);
-        // console.log(c.nombreUsuario != name);
-        // if(usuarios != null){
-            // if(c[0].nombreUsuario != name){
-                usuario.push(_json);
-                console.log(usuario);
-                localStorage.setItem("usuarios", JSON.stringify(usuario));
-                form_ref.current.reset();
-                toast({
-                    title: "Registro Satisfactorio",
-                    description: "Usted ha registrado correctamente",
-                    status: "success",
-                    duration: 9000,
-                    isClosable: true,
-                })
-            // }
-        //     else{
-        //         toast({
-        //             title: "Usuario ya existente",
-        //             description: "Los datos ingresados ya se encuentran",
-        //             status: "error",
-        //             duration: 9000,
-        //             isClosable: true,
-        //         })
-        //     }
-        // }
-
+        usuario.push(_json);
+        localStorage.setItem("usuarios", JSON.stringify(usuario));
+        form_ref.current.reset();
+        toast({
+            title: "Registro Satisfactorio",
+            description: "Usted ha registrado correctamente",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+        })
     }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <h2 style = {{ fontSize: '23px', fontWeight: 'bold', marginBottom: '10px' }}>Bienvenido al Registro</h2>
-            <StyledFormContainer className='container' onSubmit={envioRegistro} ref = {form_ref}>
+            <h2 style={{ fontSize: '23px', fontWeight: 'bold', marginBottom: '10px' }}>Bienvenido al Registro</h2>
+            <StyledFormContainer className='container' onSubmit={envioRegistro} ref={form_ref}>
                 <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Nombre de usuario</Form.Label>
                     <FontAwesomeIcon icon={faUser} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="text" placeholder="Ingrese Usuario" onChange={cambiarEstado} name="nombreUsuario" maxLength = '10' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
+                    <Form.Control type="text" placeholder="Ingrese Usuario" onChange={cambiarEstado} name="nombreUsuario" maxLength='10' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
                 <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }} >Contraseña</Form.Label>
                     <FontAwesomeIcon icon={faLock} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="password" placeholder="Ingrese Contraseña"  onChange={cambiarEstado} name="contraseña" maxLength = '16' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
+                    <Form.Control type="password" placeholder="Ingrese Contraseña" onChange={cambiarEstado} name="contraseña" maxLength='16' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
                 <Form.Group style={{ position: 'relative', margin: '0px' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }} >Correo Electrónico</Form.Label>
                     <FontAwesomeIcon icon={faEnvelope} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="email" placeholder="Ingrese Correo Electrónico"  onChange={cambiarEstado} name="correo" style={{ paddingLeft: '35px', paddingRight: '35px' }} required/>
+                    <Form.Control type="email" placeholder="Ingrese Correo Electrónico" onChange={cambiarEstado} name="correo" style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
-                <Form.Group style={{ position: 'relative'}}>
+                <Form.Group style={{ position: 'relative' }}>
                     <Form.Label className='mt-2 mb-2' style={{ fontWeight: 'bold' }}>Dirección</Form.Label>
-                    <FontAwesomeIcon icon={faMapMarkerAlt } style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
-                    <Form.Control type="text" placeholder="Ingrese Dirección"  onChange={cambiarEstado} name="direccion" maxLength = '30' style={{ paddingLeft: '35px', paddingRight: '35px' }} required/>
+                    <FontAwesomeIcon icon={faMapMarkerAlt} style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '10px', marginLeft: '10px', color: 'black', left: '1px', bottom: '1px' }} />
+                    <Form.Control type="text" placeholder="Ingrese Dirección" onChange={cambiarEstado} name="direccion" maxLength='30' style={{ paddingLeft: '35px', paddingRight: '35px' }} required />
                 </Form.Group>
                 <StyledButtomSend type='submit' >Enviar</StyledButtomSend>
             </StyledFormContainer>

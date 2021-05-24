@@ -1,6 +1,13 @@
 {
   "cart": [
     {
+      "nombre": "Guajolota de Tamal Verde",
+      "precio": 25,
+      "imagen": "https://i.ibb.co/0y5fZTK/g-verdex4.png",
+      "cantidad": 1,
+      "id": "guajo-0"
+    },
+    {
       "nombre": "Guajolota de Tamal de Pasas",
       "precio": 25,
       "imagen": "https://i.ibb.co/YPHFzRC/g-pasasx4.png",
@@ -8,11 +15,18 @@
       "id": "guajo-4"
     },
     {
-      "nombre": "Atole de Chocolate",
-      "precio": 12,
-      "imagen": "https://i.ibb.co/fG55ZFy/b-chocolatex4.png",
-      "cantidad": 2,
-      "id": "bebida-2"
+      "nombre": "Tamal de Pasas",
+      "precio": 14,
+      "imagen": "https://i.ibb.co/CM1whHS/t-pasasx4.png",
+      "cantidad": 1,
+      "id": "tamal-4"
+    },
+    {
+      "nombre": "Tamal de Guayaba",
+      "precio": 14,
+      "imagen": "https://i.ibb.co/JcVX6xc/t-guayabax4.png",
+      "cantidad": 1,
+      "id": "tamal-5"
     }
   ],
   "guajolotas": [

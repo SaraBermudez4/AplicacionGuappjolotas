@@ -35,14 +35,14 @@ const Cantidad = styled.h2`
         `
 
 function CounterDos({ modificarCantidad }) {
-        
+
         const { state, incremento, decremento } = useCounter(0, modificarCantidad)
 
         return (
                 <div>
                         <Contenedor>
                                 {
-                                        (state == 0)
+                                        (state === 0)
                                                 ?
                                                 <img src="https://i.ibb.co/bQtPKQw/minus-circle-gray.png" alt="minus-circle-gray" border="0" />
                                                 :

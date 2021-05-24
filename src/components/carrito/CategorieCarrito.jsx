@@ -84,7 +84,6 @@ const CategorieCarrito = (props) => {
 
     const [show, setShow] = useState(false);
 
-
     const handleClose = () => setShow(false);
     const handleShow = (e) => {
         i = e
@@ -107,15 +106,15 @@ const CategorieCarrito = (props) => {
     }
 
     return (
-        <DivCart>
+        <DivCart style={{ marginBottom: '35%' }}>
             {
                 props.categories.map(cart => {
                     return (
                         <DivCCart key={`"cart"-${cart.nombre}`}>
                             <ButtonCCart onClick={(e) => {
-                                    (e.target.id === cart.id)
-                                    &&  miFuncion(cart)
-                                }}>
+                                (e.target.id === cart.id)
+                                    && miFuncion(cart)
+                            }}>
                                 <Flex>
                                     <Image boxSize="56px" src={cart.imagen} alt={cart.nombre} />
                                     <TextDivNameCant>

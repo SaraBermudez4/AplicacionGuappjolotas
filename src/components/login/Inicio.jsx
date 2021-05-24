@@ -1,21 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React from 'react'
 import styled from 'styled-components';
-import { Col, Container, Navbar, Row, Dropdown, Card, Button, Image, Form } from 'react-bootstrap';
+import { Col, Container, Row, Form } from 'react-bootstrap';
 import { useToast } from "@chakra-ui/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { Link, Redirect } from 'react-router-dom'
-let global 
+import { Redirect } from 'react-router-dom'
+
 const StyledFormContainer = styled(Container)`
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`
-
-const StyledLabelContainer = styled.label`
-     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -33,14 +26,12 @@ const StyledButtom = styled.button`
 let users;
 
 const Inicio = () => {
-    const logueado = useRef("/")
     const toast = useToast()
     const usuarios = JSON.parse(localStorage.getItem("usuarios"))
-    console.log(usuarios);
     const envioInicio = () => {
         let name = document.getElementById('user').value;
         let password = document.getElementById('password').value;
-        if (name == "" || password == "") {
+        if (name === "" || password === "") {
             toast({
                 title: "Error",
                 description: "Por favor llene todos los campos",
@@ -49,8 +40,7 @@ const Inicio = () => {
                 isClosable: true,
             })
         } else {
-            // console.log(name, password);
-            if (usuarios == null) {
+            if (usuarios === null) {
                 toast({
                     title: "Usuario no registrado",
                     description: "Registrate primero para poder ingresar",
@@ -60,9 +50,8 @@ const Inicio = () => {
                 })
             }
             else {
-                users = usuarios.filter((u) => u.nombreUsuario == name)
-                console.log(users[0]);
-                if (users[0] == undefined) {
+                users = usuarios.filter((u) => u.nombreUsuario === name)
+                if (users[0] === undefined) {
                     toast({
                         title: "Datos erróneos",
                         description: "Valide sus datos o realice el registro",
@@ -73,7 +62,7 @@ const Inicio = () => {
 
                 } else {
 
-                    if (password == users[0].contraseña) {
+                    if (password === users[0].contraseña) {
                         toast({
                             title: "Bienvenido",
                             description: "Usted ha ingresado satisfactoriamente",
@@ -81,12 +70,7 @@ const Inicio = () => {
                             duration: 9000,
                             isClosable: true,
                         })
-                        //return console.log("Hola");
-                        //<Redirect to = "/"/>
-                        //<Redirect to = {global}/>
-                        //global = "/"
                         localStorage.setItem("logueado", true)
-                        //this.props.history.push('/home');
                         window.location.reload()
                     }
                     else {
@@ -101,25 +85,11 @@ const Inicio = () => {
                     }
                 }
             }
-            //verifyRoute()
         }
-        //const verifyRoute = () => {
             if (localStorage.getItem('logueado')) {
                 <Redirect to = "/"/>
             }
-        //};
-        
     }
-
-    useEffect(() => {
-        console.log("componentDidMount");
-        console.log("componentDidUpdate");
-
-        return () => {
-            console.log("componentWillUnmount");
-        }
-
-    });
     return (
 
         <StyledFormContainer>

@@ -13,7 +13,7 @@ const StyledHome = styled.header`
 localStorage.setItem('productCategorie', "guajolotas")
 
 class Home extends Component {
-    
+
     constructor(props) {
         super(props)
         this.state = {
@@ -32,7 +32,7 @@ class Home extends Component {
         })
 
         axios
-            .get(`http://localhost:3004/${this.state.categorie}`)
+            .get(`https://api-guajolotas.herokuapp.com/${this.state.categorie}`)
             .then(res => {
                 this.setState({
                     loading: false,
@@ -52,7 +52,7 @@ class Home extends Component {
             error: null
         })
         axios
-            .get("http://localhost:3004/categorias")
+            .get("https://api-guajolotas.herokuapp.com/categorias")
             .then(res => {
                 this.setState({
                     loading: false,
@@ -66,7 +66,7 @@ class Home extends Component {
                 })
             })
     }
-    
+
     componentDidMount() {
         this.fetchProductosData()
         this.fetchProductosDataCategorie()
@@ -76,7 +76,6 @@ class Home extends Component {
         if (prevState.categorie !== this.state.categorie) {
             this.fetchProductosData()
         }
-
     }
 
     handleClickSelection = (e, section) => {
@@ -87,7 +86,7 @@ class Home extends Component {
     }
 
     render() {
-        
+
         if (this.state.loading && !this.state.data) {
             return (
                 <Center>
@@ -104,7 +103,6 @@ class Home extends Component {
         if (this.state.error) {
             return <h1>Vaya vaya, en mi pc si funcionaba</h1>
         }
-
         return (
             <StyledHome>
                 <Header />

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { Grid, GridItem } from '@chakra-ui/layout';
@@ -25,7 +25,6 @@ const StyledCarrito = styled(GridItem)`
     height:24px;
 `
 
-
 const StyledGrid = styled(Grid)`
     justify-content: space-between !important;
     display: flex !important;
@@ -50,11 +49,10 @@ const Header = () => {
             <StyledTextEncabezado>Nada como una Guajolota para empezar el día</StyledTextEncabezado>
             <Link to="/search">
                 <Col xs={8} style={{ position: 'relative', marginTop: '32px', paddingLeft: "0" }}>
-                    <img src='https://i.ibb.co/ssJCP66/vector-search.png' style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '20px', marginLeft: '25px', color: 'black', bottom: '1px', }} />
+                    <img src='https://i.ibb.co/ssJCP66/vector-search.png' style={{ position: 'absolute', pointerEvents: 'none', marginBottom: '20px', marginLeft: '25px', color: 'black', bottom: '1px', }} alt="Imagen del buscador" />
 
                     < StyledSearchInput type='search' style={{ paddingLeft: '35px', paddingRight: '35px', }} placeholder='Sabor de guajolota, bebida...' name="searchText"
                         onClick={() => {
-
                         }} />
                 </Col>
             </Link>

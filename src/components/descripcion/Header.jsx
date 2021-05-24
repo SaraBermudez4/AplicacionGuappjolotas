@@ -27,8 +27,8 @@ export default class Header extends Component {
                         <Link to="/home"><img src="https://i.ibb.co/ZGqLjJJ/vector-chevron-left.png" alt="vector-chevron-left" border="0" /></Link>
                     </Retorno>
                     <Carrito colStart={6} colEnd={7} h="10">
-                    <Link to="/cart"><img src="https://i.ibb.co/ChmcXxb/vector-shop-cart.png" alt="vector-shop-cart" border="0" /></Link>
-                        </Carrito>
+                        <Link to="/cart"><img src="https://i.ibb.co/ChmcXxb/vector-shop-cart.png" alt="vector-shop-cart" border="0" /></Link>
+                    </Carrito>
                 </Grid>
             </div>
         )
